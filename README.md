@@ -55,7 +55,7 @@ $message = (new \Swift_Message('Hello Email'))
     )
 ;
 
-$this->mailer->send($message);
+$this->get('mailer')->send($message);
 ```
 
 ## License
