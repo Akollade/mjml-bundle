@@ -1,6 +1,6 @@
 <?php
 
-namespace notFloran\MjmlBundle\DependencyInjection;
+namespace NotFloran\MjmlBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;

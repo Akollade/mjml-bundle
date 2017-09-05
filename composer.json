@@ -6,7 +6,7 @@
   "license": "MIT",
   "autoload": {
     "psr-4": {
-      "notFloran\\MjmlBundle\\": "src"
+      "NotFloran\\MjmlBundle\\": "src"
     }
   },
   "authors": [

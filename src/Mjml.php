@@ -1,6 +1,6 @@
 <?php
 
-namespace notFloran\MjmlBundle;
+namespace NotFloran\MjmlBundle;
 
 use Symfony\Component\Process\Process;
 
