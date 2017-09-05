@@ -60,4 +60,4 @@ $this->get('mailer')->send($message);
 
 ## License
 
-[MjmlBundle](https://github.com/notFloran/MjmlBundle) is licensed under the [MIT license](LICENSE).
+[MjmlBundle](https://github.com/notFloran/mjml-bundle) is licensed under the [MIT license](LICENSE).
