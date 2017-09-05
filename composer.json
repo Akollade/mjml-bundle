@@ -1,0 +1,25 @@
+{
+  "name": "notfloran/mjml-bundle",
+  "type": "symfony-bundle",
+  "description": "Symfony bundle for MJML",
+  "keywords": ["mjml", "email"],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "notFloran\\MjmlBundle\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "Floran Brutel",
+      "email": "me@floran.fr"
+    }
+  ],
+  "require": {
+    "php": "^7.1.0"
+  },
+  "require-dev": {
+  },
+  "suggest": {
+  }
+}
