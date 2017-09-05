@@ -12,18 +12,31 @@ class Mjml
     private $twig;
 
     /**
-     * @param \Twig_Environment $twig
+     * @var string
      */
-    public function __construct(\Twig_Environment $twig)
+    private $bin;
+
+    /**
+     * @param \Twig_Environment $twig
+     * @param                   $bin
+     */
+    public function __construct(\Twig_Environment $twig, $bin)
     {
         $this->twig = $twig;
+        $this->bin = $bin;
     }
 
-    public function render($template, array $parameters)
+    /**
+     * @param       $template
+     * @param array $parameters
+     *
+     * @return string
+     */
+    public function render($template, array $parameters = [])
     {
         $mjmlTemplate = $this->twig->render($template, $parameters);
 
-        $process = new Process('mjml -i -s');
+        $process = new Process($this->bin . ' -i -s');
         $process->setInput($mjmlTemplate);
         $process->run();
 

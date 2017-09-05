@@ -1,0 +1,7 @@
+services:
+
+    notfloran.mjml:
+        class: notFloran\MjmlBundle\Mjml
+        arguments:
+            - "@twig"
+            - "%notfloran.mjml_bin%"
