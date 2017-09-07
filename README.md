@@ -62,7 +62,9 @@ mjml:
 
                     <mj-divider border-color="#F45E43"></mj-divider>
 
-                    <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello {{ name }} from MJML and Symfony</mj-text>
+                    <mj-text font-size="20px" color="#F45E43" font-family="helvetica">
+                        Hello {{ name }} from MJML and Symfony
+                    </mj-text>
 
                 </mj-column>
             </mj-section>
@@ -105,7 +107,9 @@ $this->get('mailer')->send($message);
 
                         <mj-divider border-color="#F45E43"></mj-divider>
 
-                        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello {{ name }} from MJML and Symfony</mj-text>
+                        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">
+                            Hello {{ name }} from MJML and Symfony
+                        </mj-text>
 
                     </mj-column>
                 </mj-section>
