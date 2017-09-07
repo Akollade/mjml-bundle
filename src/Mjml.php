@@ -40,6 +40,11 @@ class Mjml
         $process->setInput($mjmlTemplate);
         $process->run();
 
+        // executes after the command finishes
+        if (!$process->isSuccessful()) {
+            throw new \Exception('failed to render MJML template');
+        }
+
         return $process->getOutput();
     }
 }
