@@ -36,8 +36,6 @@ class AppKernel extends Kernel
 
 ## Configuration
 
-The MJML binary is configurable:
-
 Example:
 
 ```yaml
