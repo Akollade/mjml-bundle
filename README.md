@@ -61,7 +61,7 @@ mjml:
                     <mj-image width="100" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
 
                     <mj-divider border-color="#F45E43"></mj-divider>
-à
+
                     <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello {{ name }} from MJML and Symfony</mj-text>
 
                 </mj-column>
@@ -104,7 +104,7 @@ $this->get('mailer')->send($message);
                         <mj-image width="100" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
 
                         <mj-divider border-color="#F45E43"></mj-divider>
-à
+
                         <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello {{ name }} from MJML and Symfony</mj-text>
 
                     </mj-column>
