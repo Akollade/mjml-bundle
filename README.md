@@ -48,14 +48,82 @@ mjml:
 
 ## Usage
 
+### Use service
+
+```twig
+{# mail/example.mjml.twig #}
+<mjml>
+    <mj-body>
+        <mj-container>
+            <mj-section>
+                <mj-column>
+
+                    <mj-image width="100" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
+
+                    <mj-divider border-color="#F45E43"></mj-divider>
+à
+                    <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello {{ name }} from MJML and Symfony</mj-text>
+
+                </mj-column>
+            </mj-section>
+        </mj-container>
+    </mj-body>
+</mjml>
+```
+
 ```php
 $message = (new \Swift_Message('Hello Email'))
     ->setFrom('my-app@example.fr')
     ->setTo('me@example.fr')
     ->setBody(
         $this->get('mjml')->render(
-            $this->>get('twig')->render('mail/example.mjml.twig')
+            $this->get('twig')->render('mail/example.mjml.twig', [
+                'name' => 'Floran'
+            ])
         ),
+        'text/html'
+    )
+;
+
+$this->get('mailer')->send($message);
+```
+
+### Use twig tag
+
+
+```twig
+{# mail/example.mjml.twig #}
+{% block email_content %}
+    {% mjml %}
+    <mjml>
+        <mj-body>
+            <mj-container>
+                <mj-section>
+                    <mj-column>
+
+                        <mj-image width="100" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
+
+                        <mj-divider border-color="#F45E43"></mj-divider>
+à
+                        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello {{ name }} from MJML and Symfony</mj-text>
+
+                    </mj-column>
+                </mj-section>
+            </mj-container>
+        </mj-body>
+    </mjml>
+    {% endmjml %}
+{% endblock %}
+```
+
+```php
+$message = (new \Swift_Message('Hello Email'))
+    ->setFrom('my-app@example.fr')
+    ->setTo('me@example.fr')
+    ->setBody(
+        $this->get('twig')->render('mail/example.mjml.twig', [
+            'name' => 'Floran'
+        ]),
         'text/html'
     )
 ;
