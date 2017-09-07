@@ -3,6 +3,5 @@ services:
     mjml:
         class: NotFloran\MjmlBundle\Mjml
         arguments:
-            - "@twig"
             - "%notfloran_mjml.bin%"
             - "%notfloran_mjml.mimify%"

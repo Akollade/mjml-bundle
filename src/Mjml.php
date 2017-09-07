@@ -2,16 +2,10 @@
 
 namespace NotFloran\MjmlBundle;
 
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 
 class Mjml
 {
-    /**
-     * @var \Twig_Environment
-     */
-    private $twig;
-
     /**
      * @var string
      */
@@ -23,33 +17,24 @@ class Mjml
     private $mimify;
 
     /**
-     * @param \Twig_Environment $twig
-     * @param string            $bin
-     * @param bool              $mimify
+     * @param string $bin
+     * @param bool $mimify
      */
-    public function __construct(
-        \Twig_Environment $twig,
-        $bin,
-        $mimify
-    )
+    public function __construct($bin, $mimify)
     {
-        $this->twig = $twig;
         $this->bin = $bin;
         $this->mimify = $mimify;
     }
 
     /**
-     * @param       $template
-     * @param array $parameters
+     * @param string $mjmlContent
      *
      * @throw \RuntimeException
      *
      * @return string
      */
-    public function render($template, array $parameters = [])
+    public function render($mjmlContent)
     {
-        $mjmlTemplate = $this->twig->render($template, $parameters);
-
         $builder = new ProcessBuilder();
         $builder->setPrefix($this->bin);
         $builder->setArguments([
@@ -61,7 +46,7 @@ class Mjml
             $builder->add('-m');
         }
 
-        $builder->setInput($mjmlTemplate);
+        $builder->setInput($mjmlContent);
 
         $process = $builder->getProcess();
         $process->run();

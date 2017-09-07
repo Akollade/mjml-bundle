@@ -53,7 +53,9 @@ $message = (new \Swift_Message('Hello Email'))
     ->setFrom('my-app@example.fr')
     ->setTo('me@example.fr')
     ->setBody(
-        $this->get('mjml')->render('mail/example.mjml.twig'),
+        $this->get('mjml')->render(
+            $this->>get('twig')->render('mail/example.mjml.twig')
+        ),
         'text/html'
     )
 ;
