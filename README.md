@@ -2,6 +2,8 @@
 
 Bundle to use [MJML](https://mjml.io/) with Symfony.
 
+**It is under heavy development.**
+
 ## Installation
 
 Download the bundle:
