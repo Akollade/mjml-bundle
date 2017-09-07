@@ -31,7 +31,8 @@ class MjmlExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('notfloran.mjml_bin', $config['bin']);
+        $container->setParameter('notfloran_mjml.bin', $config['bin']);
+        $container->setParameter('notfloran_mjml.mimify', $config['mimify']);
     }
 
 }

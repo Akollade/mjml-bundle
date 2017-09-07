@@ -21,6 +21,9 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('bin')
                     ->defaultValue('mjml')
                 ->end()
+                ->booleanNode('mimify')
+                    ->defaultFalse()
+                ->end()
             ->end()
         ;
 

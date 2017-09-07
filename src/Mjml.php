@@ -18,18 +18,31 @@ class Mjml
     private $bin;
 
     /**
-     * @param \Twig_Environment $twig
-     * @param                   $bin
+     * @var bool
      */
-    public function __construct(\Twig_Environment $twig, $bin)
+    private $mimify;
+
+    /**
+     * @param \Twig_Environment $twig
+     * @param string            $bin
+     * @param bool              $mimify
+     */
+    public function __construct(
+        \Twig_Environment $twig,
+        $bin,
+        $mimify
+    )
     {
         $this->twig = $twig;
         $this->bin = $bin;
+        $this->mimify = $mimify;
     }
 
     /**
      * @param       $template
      * @param array $parameters
+     *
+     * @throw \RuntimeException
      *
      * @return string
      */
@@ -43,6 +56,11 @@ class Mjml
             '-i',
             '-s',
         ]);
+
+        if ($this->mimify) {
+            $builder->add('-m');
+        }
+
         $builder->setInput($mjmlTemplate);
 
         $process = $builder->getProcess();

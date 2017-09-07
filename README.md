@@ -43,6 +43,7 @@ Example:
 ```yaml
 mjml:
     bin: /opt/mjml # default:  mjml
+    mimify: true # default: false
 ```
 
 ## Usage
