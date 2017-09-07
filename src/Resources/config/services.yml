@@ -1,6 +1,6 @@
 services:
 
-    notfloran.mjml:
+    mjml:
         class: NotFloran\MjmlBundle\Mjml
         arguments:
             - "@twig"
