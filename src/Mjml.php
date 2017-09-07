@@ -3,6 +3,7 @@
 namespace NotFloran\MjmlBundle;
 
 use Symfony\Component\Process\Process;
+use Symfony\Component\Process\ProcessBuilder;
 
 class Mjml
 {
@@ -36,13 +37,29 @@ class Mjml
     {
         $mjmlTemplate = $this->twig->render($template, $parameters);
 
-        $process = new Process($this->bin . ' -i -s');
-        $process->setInput($mjmlTemplate);
+        $builder = new ProcessBuilder();
+        $builder->setPrefix($this->bin);
+        $builder->setArguments([
+            '-i',
+            '-s',
+        ]);
+        $builder->setInput($mjmlTemplate);
+
+        $process = $builder->getProcess();
         $process->run();
 
         // executes after the command finishes
         if (!$process->isSuccessful()) {
-            throw new \Exception('failed to render MJML template');
+            throw new \RuntimeException(sprintf(
+                'The exit status code \'%s\' says something went wrong:'."\n"
+                .'stderr: "%s"'."\n"
+                .'stdout: "%s"'."\n"
+                .'command: %s.',
+                $process->getStatus(),
+                $process->getErrorOutput(),
+                $process->getOutput(),
+                $process->getCommandLine()
+            ));
         }
 
         return $process->getOutput();
