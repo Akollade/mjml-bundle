@@ -5,6 +5,7 @@ namespace NotFloran\MjmlBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
+use Symfony\Component\Process\ExecutableFinder;
 
 class Configuration implements ConfigurationInterface
 {
@@ -16,14 +17,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('mjml');
 
+        $finder = new ExecutableFinder();
+
         $rootNode
             ->children()
-                ->scalarNode('bin')
-                    ->defaultValue('mjml')
-                ->end()
-                ->booleanNode('mimify')
-                    ->defaultFalse()
-                ->end()
+                ->scalarNode('bin')->defaultValue(function () use ($finder) { return $finder->find('mjml'); })->end()
+                ->booleanNode('mimify')->defaultFalse()->end()
             ->end()
         ;
 
