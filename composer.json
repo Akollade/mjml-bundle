@@ -18,7 +18,7 @@
   "require": {
     "php": "^7.1.0",
     "symfony/process": "^2.8|^3.0",
-    "twig/twig": "^2.0"
+    "twig/twig": "^1.0||^2.0"
   },
   "require-dev": {
   },
