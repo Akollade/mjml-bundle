@@ -40,6 +40,8 @@ class Mjml
         $builder->setArguments([
             '-i',
             '-s',
+            '-l',
+            'strict',
         ]);
 
         if ($this->mimify) {
