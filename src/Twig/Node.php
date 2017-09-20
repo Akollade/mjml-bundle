@@ -8,10 +8,9 @@ use Twig_Compiler;
 class Node extends Twig_Node
 {
     /**
-     * Node constructor.
-     * @param Twig_Node $value
-     * @param int $line
-     * @param null $tag
+     * @param Twig_Node   $value
+     * @param int         $line
+     * @param null|string $tag
      */
     public function __construct(Twig_Node $value, $line, $tag = null)
     {

@@ -21,6 +21,7 @@
     "twig/twig": "^1.0||^2.0"
   },
   "require-dev": {
+    "phpstan/phpstan": "^0.8.5"
   },
   "suggest": {
   }
