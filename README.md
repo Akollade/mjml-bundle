@@ -42,7 +42,7 @@ Example:
 
 ```yaml
 mjml:
-    bin: /opt/mjml # default:  mjml
+    bin: "%kernel.root_dir%/../node_modules/.bin/mjml" # default:  mjml
     mimify: true # default: false
 ```
 
