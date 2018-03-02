@@ -17,11 +17,11 @@
   ],
   "require": {
     "php": "^7.1.0",
-    "symfony/process": "^2.8|^3.0",
-    "twig/twig": "^1.0||^2.0"
+    "symfony/process": "^4.0",
+    "twig/twig": "^4.0"
   },
   "require-dev": {
-    "phpstan/phpstan": "^0.8.5"
+    "phpstan/phpstan": "^0.9.2"
   },
   "suggest": {
   }
