@@ -6,7 +6,8 @@ use NotFloran\MjmlBundle\Mjml;
 use Twig_TokenParser;
 use Twig_Token;
 
-class TokenParser extends Twig_TokenParser {
+class TokenParser extends Twig_TokenParser
+{
 
     /**
      * @var Mjml
@@ -24,8 +25,9 @@ class TokenParser extends Twig_TokenParser {
     /**
      * Parse the twig tag.
      *
-     * @param  Twig_Token $token
-     * @return Node
+     * @param Twig_Token $token
+     * @return Node|\Twig_Node
+     * @throws \Twig_Error_Syntax
      */
     public function parse(Twig_Token $token)
     {
@@ -33,8 +35,7 @@ class TokenParser extends Twig_TokenParser {
 
         $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
 
-        $body = $this->parser->subparse(function(Twig_Token $token)
-        {
+        $body = $this->parser->subparse(function (Twig_Token $token) {
             return $token->test('endmjml');
         }, true);
 
@@ -62,5 +63,4 @@ class TokenParser extends Twig_TokenParser {
     {
         return $this->mjml;
     }
-
 }

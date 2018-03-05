@@ -6,8 +6,8 @@ use NotFloran\MjmlBundle\Mjml;
 use Twig_Extension;
 use Twig_Extension_GlobalsInterface;
 
-class Extension extends Twig_Extension implements Twig_Extension_GlobalsInterface {
-
+class Extension extends Twig_Extension implements Twig_Extension_GlobalsInterface
+{
     /**
      * @var Mjml
      */

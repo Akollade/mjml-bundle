@@ -39,5 +39,4 @@ class Node extends Twig_Node
                                     ->render($content);
                 '.PHP_EOL);
     }
-
 }
