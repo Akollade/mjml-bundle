@@ -24,8 +24,9 @@ class TokenParser extends Twig_TokenParser {
     /**
      * Parse the twig tag.
      *
-     * @param  Twig_Token $token
-     * @return Node
+     * @param Twig_Token $token
+     * @return Node|\Twig_Node
+     * @throws \Twig_Error_Syntax
      */
     public function parse(Twig_Token $token)
     {
@@ -62,5 +63,4 @@ class TokenParser extends Twig_TokenParser {
     {
         return $this->mjml;
     }
-
 }

@@ -2,7 +2,7 @@
 
 namespace NotFloran\MjmlBundle;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class Mjml
 {
@@ -35,14 +35,15 @@ class Mjml
      */
     public function render($mjmlContent)
     {
-        $builder = new ProcessBuilder();
-        $builder->setPrefix($this->bin);
-        $builder->setArguments([
+        $process = new Process([
             '-i',
             '-s',
             '-l',
             'strict',
         ]);
+
+
+        $process->setPrefix($this->bin);
 
         if ($this->mimify) {
             $builder->add('-m');

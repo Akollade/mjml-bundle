@@ -10,18 +10,8 @@ use Symfony\Component\Config\FileLocator;
 class MjmlExtension extends Extension
 {
     /**
-     * Loads the Swift Mailer configuration.
-     *
-     * Usage example:
-     *
-     *      <swiftmailer:config transport="gmail">
-     *        <swiftmailer:username>fabien</swift:username>
-     *        <swiftmailer:password>xxxxx</swift:password>
-     *        <swiftmailer:spool path="/path/to/spool/" />
-     *      </swiftmailer:config>
-     *
-     * @param array            $configs   An array of configuration settings
-     * @param ContainerBuilder $container A ContainerBuilder instance
+     * @param array $configs
+     * @param ContainerBuilder $container
      */
     public function load(array $configs, ContainerBuilder $container)
     {

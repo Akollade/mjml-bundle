@@ -1,17 +1,16 @@
 services:
 
     mjml:
-        alias: notfloran_mjml.mjml
+        alias: NotFloran\MjmlBundle\Mjml
+        public: true
 
-    notfloran_mjml.mjml:
-        class: NotFloran\MjmlBundle\Mjml
+    NotFloran\MjmlBundle\Mjml:
         arguments:
-            - "%notfloran_mjml.bin%"
-            - "%notfloran_mjml.mimify%"
+            $bin: '%notfloran_mjml.bin%'
+            $mimify: '%notfloran_mjml.mimify%'
 
-    notfloran_mjml.twig_extension:
-        class: NotFloran\MjmlBundle\Twig\Extension
+    NotFloran\MjmlBundle\Twig\Extension:
         arguments:
-            - "@notfloran_mjml.mjml"
+            $mjml: '@notfloran_mjml.mjml'
         tags:
             - { name: twig.extension }
