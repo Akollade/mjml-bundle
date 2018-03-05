@@ -24,5 +24,4 @@ class MjmlExtension extends Extension
         $container->setParameter('notfloran_mjml.bin', $config['bin']);
         $container->setParameter('notfloran_mjml.mimify', $config['mimify']);
     }
-
 }
