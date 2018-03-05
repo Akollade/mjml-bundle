@@ -11,6 +11,6 @@ services:
 
     NotFloran\MjmlBundle\Twig\Extension:
         arguments:
-            $mjml: 'NotFloran\MjmlBundle\Mjml'
+            $mjml: '@NotFloran\MjmlBundle\Mjml'
         tags:
             - { name: twig.extension }
