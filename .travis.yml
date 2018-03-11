@@ -1,0 +1,28 @@
+language: php
+
+sudo: false
+
+matrix:
+  include:
+    - php: 7.1
+      env: SYMFONY_VERSION=^4.0
+    - php: 7.2
+      env: SYMFONY_VERSION=^4.0
+
+env:
+  global:
+    - SYMFONY_VERSION=""
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+before_install:
+  - composer self-update
+  - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
+  - if [ "$SYMFONY_VERSION" != "" ]; then composer require --no-update symfony/process:$SYMFONY_VERSION symfony/dependency-injection:$SYMFONY_VERSION; fi
+
+install: composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
+
+script:
+  - echo "..."
