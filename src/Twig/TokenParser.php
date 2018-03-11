@@ -57,7 +57,7 @@ class TokenParser extends Twig_TokenParser
     /**
      * Return the mjml instance being used.
      *
-     * @return string
+     * @return Mjml
      */
     public function getMjml()
     {

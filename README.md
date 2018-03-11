@@ -3,7 +3,6 @@
 [![Latest Stable Version](https://poser.pugx.org/notfloran/mjml-bundle/v/stable.svg)](https://packagist.org/packages/notfloran/mjml-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/notfloran/mjml-bundle/v/unstable.svg)](https://packagist.org/packages/notfloran/mjml-bundle)
 
-
 Bundle to use [MJML](https://mjml.io/) with Symfony 4.
 
 ## Installation
@@ -15,8 +14,6 @@ composer require notfloran/mjml-bundle
 ```
 
 ## Configuration
-
-The MJML binary is configurable:
 
 Example:
 
