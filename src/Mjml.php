@@ -2,7 +2,7 @@
 
 namespace NotFloran\MjmlBundle;
 
-use Symfony\Component\Process\ProcessBuilder;
+use Symfony\Component\Process\Process;
 
 class Mjml
 {
@@ -18,7 +18,7 @@ class Mjml
 
     /**
      * @param string $bin
-     * @param bool $mimify
+     * @param bool   $mimify
      */
     public function __construct($bin, $mimify)
     {
@@ -28,38 +28,37 @@ class Mjml
 
     /**
      * @param string $mjmlContent
-     *
      * @throw \RuntimeException
      *
      * @return string
      */
     public function render($mjmlContent)
     {
-        $builder = new ProcessBuilder();
-        $builder->setPrefix($this->bin);
-        $builder->setArguments([
+        // Tab arguments
+        $arguments = [
+            $this->bin,
             '-i',
             '-s',
             '-l',
             'strict',
-        ]);
+        ];
 
-        if ($this->mimify) {
-            $builder->add('-m');
+        if (true === $this->mimify) {
+            array_push($arguments, '-m');
         }
 
-        $builder->setInput($mjmlContent);
-
-        $process = $builder->getProcess();
+        // Create process
+        $process = new Process($arguments);
+        $process->setInput($mjmlContent);
         $process->run();
 
-        // executes after the command finishes
-        if (!$process->isSuccessful()) {
+        // Executes after the command finishes
+        if (true !== $process->isSuccessful()) {
             throw new \RuntimeException(sprintf(
-                'The exit status code \'%s\' says something went wrong:'."\n"
-                .'stderr: "%s"'."\n"
-                .'stdout: "%s"'."\n"
-                .'command: %s.',
+                'The exit status code \'%s\' says something went wrong:' . "\n"
+                . 'stderr: "%s"' . "\n"
+                . 'stdout: "%s"' . "\n"
+                . 'command: %s.',
                 $process->getStatus(),
                 $process->getErrorOutput(),
                 $process->getOutput(),
