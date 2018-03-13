@@ -32,7 +32,6 @@ mjml:
 {# templates/mail/example.mjml.twig #}
 <mjml>
     <mj-body>
-        <mj-container>
             <mj-section>
                 <mj-column>
 
@@ -46,7 +45,6 @@ mjml:
 
                 </mj-column>
             </mj-section>
-        </mj-container>
     </mj-body>
 </mjml>
 ```
@@ -77,7 +75,6 @@ $this->get('mailer')->send($message);
     {% mjml %}
     <mjml>
         <mj-body>
-            <mj-container>
                 <mj-section>
                     <mj-column>
 
@@ -91,7 +88,6 @@ $this->get('mailer')->send($message);
 
                     </mj-column>
                 </mj-section>
-            </mj-container>
         </mj-body>
     </mjml>
     {% endmjml %}
