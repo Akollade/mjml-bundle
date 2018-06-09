@@ -4,8 +4,11 @@ namespace NotFloran\MjmlBundle;
 
 use Symfony\Component\Process\Process;
 
-class Mjml
+final class Mjml
 {
+    private const VERSION_4 = 4;
+    private const VERSION_BEFORE_4 = 3;
+
     /**
      * @var string
      */
@@ -27,6 +30,34 @@ class Mjml
     }
 
     /**
+     * Get MJML version
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @return int
+     */
+    private function getMjmlVersion()
+    {
+        $process = new Process([
+            $this->bin,
+            '-V',
+        ]);
+        $process->run();
+
+        if (true !== $process->isSuccessful()) {
+            throw new \InvalidArgumentException(sprintf(
+                "Couldn't find the MJML binary"
+            ));
+        }
+
+        if (strpos($process->getOutput(), 'mjml-core: 4.0') === false) {
+            return self::VERSION_BEFORE_4;
+        }
+
+        return self::VERSION_4;
+    }
+
+    /**
      * @param string $mjmlContent
      * @throw \RuntimeException
      *
@@ -34,14 +65,21 @@ class Mjml
      */
     public function render($mjmlContent)
     {
+        $version = $this->getMjmlVersion();
+
         // Tab arguments
         $arguments = [
             $this->bin,
             '-i',
             '-s',
-            '-l',
-            'strict',
         ];
+
+        $strictArgument = '-l';
+        if ($version === self::VERSION_4) {
+            $strictArgument = '--config.validationLevel';
+        }
+
+        array_push($arguments, $strictArgument, 'strict');
 
         if (true === $this->mimify) {
             array_push($arguments, '-m');
