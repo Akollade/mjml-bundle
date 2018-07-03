@@ -13,6 +13,12 @@ Download the bundle:
 composer require notfloran/mjml-bundle
 ```
 
+Install [MJML](https://mjml.io)
+
+```bash
+$ npm install mjml
+```
+
 ## Configuration
 
 Example:
