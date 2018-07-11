@@ -115,6 +115,31 @@ $message = (new \Swift_Message('Hello Email'))
 $this->get('mailer')->send($message);
 ```
 
+## SwiftMailer integration
+
+Declare the following service : 
+
+```yaml
+App\SwiftMailer\MjmlPlugin:
+    tags: [swiftmailer.default.plugin]
+```
+
+Create a SwiftMailer message with a MJML body (without `{% mjml %}`) and with `text/mjml` as content-type:
+
+```php
+$message = (new \Swift_Message('Hello Email'))
+    ->setFrom('send@example.com')
+    ->setTo('recipient@example.com')
+    ->setBody(
+        $this->renderView('mail/example.mjml.twig'),
+        'text/mjml'
+    )
+
+$mailer->send($message);
+```
+
+The plugin will automatically render the MJML body and replace the body with the rendered HTML.
+
 ## License
 
 [MjmlBundle](https://github.com/notFloran/mjml-bundle) is licensed under the [MIT license](LICENSE).
