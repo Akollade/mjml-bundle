@@ -26,6 +26,6 @@
         "friendsofphp/php-cs-fixer": "^2.10"
     },
     "suggest": {
-        "swiftmailer/swiftmailer": "Plugin to integrate MJML in SwiftMailer with a plugin"
+        "swiftmailer/swiftmailer": "Plugin to integrate MJML in SwiftMailer"
     }
 }
