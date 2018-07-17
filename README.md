@@ -117,10 +117,10 @@ $this->get('mailer')->send($message);
 
 ## SwiftMailer integration
 
-Declare the following service : 
+Declare the following service: 
 
 ```yaml
-App\SwiftMailer\MjmlPlugin:
+NotFloran\MjmlBundle\SwiftMailer\MjmlPlugin:
     tags: [swiftmailer.default.plugin]
 ```
 
