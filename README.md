@@ -140,6 +140,8 @@ $mailer->send($message);
 
 The plugin will automatically render the MJML body and replace the body with the rendered HTML.
 
+In the case where a spool is used: the MJML content is save in the spool and render when the spool is flushed.
+
 ## License
 
 [MjmlBundle](https://github.com/notFloran/mjml-bundle) is licensed under the [MIT license](LICENSE).
