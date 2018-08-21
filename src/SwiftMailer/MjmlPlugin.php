@@ -2,14 +2,14 @@
 
 namespace NotFloran\MjmlBundle\SwiftMailer;
 
-use NotFloran\MjmlBundle\Mjml;
+use NotFloran\MjmlBundle\Renderer\RendererInterface;
 use Swift_Events_SendEvent;
 use Swift_Events_SendListener;
 
 class MjmlPlugin implements Swift_Events_SendListener
 {
     /**
-     * @var Mjml
+     * @var RendererInterface
      */
     private $mjml;
 
@@ -18,7 +18,7 @@ class MjmlPlugin implements Swift_Events_SendListener
      */
     private $ignoreSpoolTransport;
 
-    public function __construct(Mjml $mjml, bool $ignoreSpoolTransport = true)
+    public function __construct(RendererInterface $mjml, bool $ignoreSpoolTransport = true)
     {
         $this->mjml = $mjml;
         $this->ignoreSpoolTransport = $ignoreSpoolTransport;

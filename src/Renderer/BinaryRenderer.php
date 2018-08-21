@@ -1,10 +1,10 @@
 <?php
 
-namespace NotFloran\MjmlBundle;
+namespace NotFloran\MjmlBundle\Renderer;
 
 use Symfony\Component\Process\Process;
 
-final class Mjml
+final class BinaryRenderer implements RendererInterface
 {
     private const VERSION_4 = 4;
     private const VERSION_BEFORE_4 = 3;
@@ -63,7 +63,7 @@ final class Mjml
      *
      * @return string
      */
-    public function render($mjmlContent)
+    public function render(string $mjmlContent) : string
     {
         $version = $this->getMjmlVersion();
 
