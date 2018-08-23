@@ -50,7 +50,7 @@ final class Mjml
             ));
         }
 
-        if (strpos($process->getOutput(), 'mjml-core: 4.0') === false) {
+        if (strpos($process->getOutput(), 'mjml-core: 4.') === false) {
             return self::VERSION_BEFORE_4;
         }
 
