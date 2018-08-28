@@ -1,7 +1,7 @@
 services:
 
     mjml:
-        alias: NotFloran\MjmlBundle\Mjml
+        alias: NotFloran\MjmlBundle\Renderer\RendererInterface
         public: true
 
     NotFloran\MjmlBundle\Renderer\RendererInterface: '@NotFloran\MjmlBundle\Renderer\BinaryRenderer'
@@ -15,4 +15,4 @@ services:
         arguments:
             $mjml: '@NotFloran\MjmlBundle\Renderer\RendererInterface'
         tags:
-            - { name: twig.extension }
+        - { name: twig.extension }
