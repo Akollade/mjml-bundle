@@ -41,7 +41,7 @@ mjml:
             <mj-section>
                 <mj-column>
 
-                    <mj-image width="100" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
+                    <mj-image width="100px" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
 
                     <mj-divider border-color="#F45E43"></mj-divider>
 
@@ -84,7 +84,7 @@ $this->get('mailer')->send($message);
                 <mj-section>
                     <mj-column>
 
-                        <mj-image width="100" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
+                        <mj-image width="100px" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
 
                         <mj-divider border-color="#F45E43"></mj-divider>
 
