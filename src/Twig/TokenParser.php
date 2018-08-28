@@ -8,7 +8,6 @@ use Twig_Token;
 
 class TokenParser extends Twig_TokenParser
 {
-
     /**
      * @var RendererInterface
      */
