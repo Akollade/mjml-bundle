@@ -13,9 +13,15 @@ class MjmlPlugin implements Swift_Events_SendListener
      */
     private $mjml;
 
-    public function __construct(Mjml $mjml)
+    /**
+     * @var boolean
+     */
+    private $ignoreSpoolTransport;
+
+    public function __construct(Mjml $mjml, bool $ignoreSpoolTransport = true)
     {
         $this->mjml = $mjml;
+        $this->ignoreSpoolTransport = $ignoreSpoolTransport;
     }
 
     /**
@@ -23,7 +29,7 @@ class MjmlPlugin implements Swift_Events_SendListener
      */
     public function beforeSendPerformed(Swift_Events_SendEvent $event)
     {
-        if ($event->getSource() instanceof \Swift_Transport_SpoolTransport) {
+        if ($this->ignoreSpoolTransport && $event->getSource() instanceof \Swift_Transport_SpoolTransport) {
             return;
         }
 
