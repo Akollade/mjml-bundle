@@ -19,6 +19,11 @@ final class BinaryRenderer implements RendererInterface
      */
     private $mimify;
 
+    /**
+     * @var int|null
+     */
+    private $mjmlVersion;
+
     public function __construct(string $bin, bool $mimify)
     {
         $this->bin = $bin;
@@ -27,23 +32,26 @@ final class BinaryRenderer implements RendererInterface
 
     private function getMjmlVersion() : int
     {
-        $process = new Process([
-            $this->bin,
-            '-V',
-        ]);
-        $process->run();
+        if ($this->mjmlVersion === null) {
+            $process = new Process([
+                $this->bin,
+                '-V',
+            ]);
+            $process->run();
 
-        if (true !== $process->isSuccessful()) {
-            throw new \InvalidArgumentException(sprintf(
-                "Couldn't find the MJML binary"
-            ));
+            if (true !== $process->isSuccessful()) {
+                throw new \InvalidArgumentException(sprintf(
+                    "Couldn't find the MJML binary"
+                ));
+            }
+
+            $this->mjmlVersion = self::VERSION_4;
+            if (strpos($process->getOutput(), 'mjml-core: 4.') === false) {
+                $this->mjmlVersion = self::VERSION_BEFORE_4;
+            }
         }
 
-        if (strpos($process->getOutput(), 'mjml-core: 4.') === false) {
-            return self::VERSION_BEFORE_4;
-        }
-
-        return self::VERSION_4;
+        return $this->mjmlVersion;
     }
 
     public function render(string $mjmlContent) : string
