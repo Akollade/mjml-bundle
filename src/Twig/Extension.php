@@ -2,21 +2,18 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
-use NotFloran\MjmlBundle\Mjml;
+use NotFloran\MjmlBundle\Renderer\RendererInterface;
 use Twig_Extension;
 use Twig_Extension_GlobalsInterface;
 
 class Extension extends Twig_Extension implements Twig_Extension_GlobalsInterface
 {
     /**
-     * @var Mjml
+     * @var RendererInterface
      */
     protected $mjml;
 
-    /**
-     * @param Mjml $mjml
-     */
-    public function __construct(Mjml $mjml)
+    public function __construct(RendererInterface $mjml)
     {
         $this->mjml = $mjml;
     }

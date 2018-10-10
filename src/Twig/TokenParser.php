@@ -2,22 +2,18 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
-use NotFloran\MjmlBundle\Mjml;
+use NotFloran\MjmlBundle\Renderer\RendererInterface;
 use Twig_TokenParser;
 use Twig_Token;
 
 class TokenParser extends Twig_TokenParser
 {
-
     /**
-     * @var Mjml
+     * @var RendererInterface
      */
     protected $mjml;
 
-    /**
-     * @param Mjml $mjml
-     */
-    public function __construct(Mjml $mjml)
+    public function __construct(RendererInterface $mjml)
     {
         $this->mjml = $mjml;
     }
@@ -57,9 +53,9 @@ class TokenParser extends Twig_TokenParser
     /**
      * Return the mjml instance being used.
      *
-     * @return Mjml
+     * @return RendererInterface
      */
-    public function getMjml()
+    public function getMjml() : RendererInterface
     {
         return $this->mjml;
     }

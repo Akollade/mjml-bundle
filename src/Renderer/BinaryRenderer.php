@@ -1,10 +1,10 @@
 <?php
 
-namespace NotFloran\MjmlBundle;
+namespace NotFloran\MjmlBundle\Renderer;
 
 use Symfony\Component\Process\Process;
 
-final class Mjml
+final class BinaryRenderer implements RendererInterface
 {
     private const VERSION_4 = 4;
     private const VERSION_BEFORE_4 = 3;
@@ -19,24 +19,13 @@ final class Mjml
      */
     private $mimify;
 
-    /**
-     * @param string $bin
-     * @param bool   $mimify
-     */
-    public function __construct($bin, $mimify)
+    public function __construct(string $bin, bool $mimify)
     {
         $this->bin = $bin;
         $this->mimify = $mimify;
     }
 
-    /**
-     * Get MJML version
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return int
-     */
-    private function getMjmlVersion()
+    private function getMjmlVersion() : int
     {
         $process = new Process([
             $this->bin,
@@ -57,13 +46,7 @@ final class Mjml
         return self::VERSION_4;
     }
 
-    /**
-     * @param string $mjmlContent
-     * @throw \RuntimeException
-     *
-     * @return string
-     */
-    public function render($mjmlContent)
+    public function render(string $mjmlContent) : string
     {
         $version = $this->getMjmlVersion();
 
