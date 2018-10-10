@@ -8,9 +8,6 @@ use Symfony\Component\Process\ExecutableFinder;
 
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();

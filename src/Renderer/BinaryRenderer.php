@@ -19,24 +19,13 @@ final class BinaryRenderer implements RendererInterface
      */
     private $mimify;
 
-    /**
-     * @param string $bin
-     * @param bool   $mimify
-     */
-    public function __construct($bin, $mimify)
+    public function __construct(string $bin, bool $mimify)
     {
         $this->bin = $bin;
         $this->mimify = $mimify;
     }
 
-    /**
-     * Get MJML version
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return int
-     */
-    private function getMjmlVersion()
+    private function getMjmlVersion() : int
     {
         $process = new Process([
             $this->bin,
@@ -57,12 +46,6 @@ final class BinaryRenderer implements RendererInterface
         return self::VERSION_4;
     }
 
-    /**
-     * @param string $mjmlContent
-     * @throw \RuntimeException
-     *
-     * @return string
-     */
     public function render(string $mjmlContent) : string
     {
         $version = $this->getMjmlVersion();
