@@ -73,7 +73,11 @@ final class BinaryRenderer implements RendererInterface
         array_push($arguments, $strictArgument, 'strict');
 
         if (true === $this->mimify) {
-            array_push($arguments, '-m');
+            if ($version === self::VERSION_4) {
+                array_push($arguments, '--config.minify', 'true');
+            } else {
+                $arguments[] = '-m';
+            }
         }
 
         // Create process
