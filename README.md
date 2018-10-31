@@ -24,10 +24,12 @@ $ npm install mjml
 Example:
 
 ```yaml
-# config/packages/notfloran_mjml.yaml
+# config/packages/mjml.yaml
 mjml:
-    bin: '%kernel.project_dir%/node_modules/.bin/mjml' # default:  mjml
-    mimify: true # default: false
+  renderer: binary
+  options:
+    binary: '%kernel.project_dir%/node_modules/.bin/mjml' # default: mjml
+    minify: true # default: false
 ```
 
 ## Usage

@@ -17,17 +17,17 @@ final class BinaryRenderer implements RendererInterface
     /**
      * @var bool
      */
-    private $mimify;
+    private $minify;
 
     /**
      * @var int|null
      */
     private $mjmlVersion;
 
-    public function __construct(string $bin, bool $mimify)
+    public function __construct(string $bin, bool $minify)
     {
         $this->bin = $bin;
-        $this->mimify = $mimify;
+        $this->minify = $minify;
     }
 
     private function getMjmlVersion() : int
@@ -72,7 +72,7 @@ final class BinaryRenderer implements RendererInterface
 
         array_push($arguments, $strictArgument, 'strict');
 
-        if (true === $this->mimify) {
+        if (true === $this->minify) {
             if ($version === self::VERSION_4) {
                 array_push($arguments, '--config.minify', 'true');
             } else {
