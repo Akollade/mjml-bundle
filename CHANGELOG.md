@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0
+
+* Add RendererInterface to allow new implementation
+* Check MJML version only one time in BinaryRenderer
+* Fix typo with "mimify" -> "minify"
+
 ## 2.1.2
 
 * Add option to SwiftMailer plugin to ignore spool transport
