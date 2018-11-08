@@ -26,7 +26,8 @@ class Configuration implements ConfigurationInterface
                     ->children()
                         ->scalarNode('bin')->defaultValue(function () use ($finder) {
                             return $finder->find('mjml');
-                        })->end()
+                        })
+                        ->info('Path to the binary')->end()
                         ->booleanNode('minify')->defaultFalse()->end()
                     ->end()
                 ->end()

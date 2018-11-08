@@ -13,15 +13,19 @@ Download the bundle:
 composer require notfloran/mjml-bundle
 ```
 
+## Renderer
+
+For the moment only one renderer is available, the binary renderer.
+
+### Binary
+
 Install [MJML](https://mjml.io)
 
 ```bash
 $ npm install mjml
 ```
 
-## Configuration
-
-Example:
+Then you needs to update the configuration:
 
 ```yaml
 # config/packages/mjml.yaml
