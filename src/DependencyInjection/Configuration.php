@@ -17,10 +17,19 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-                ->scalarNode('bin')->defaultValue(function () use ($finder) {
-                    return $finder->find('mjml');
-                })->end()
-                ->booleanNode('mimify')->defaultFalse()->end()
+                ->enumNode('renderer')
+                    ->values(array('binary'))
+                    ->defaultValue('binary')
+                ->end()
+                ->arrayNode('options')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('bin')->defaultValue(function () use ($finder) {
+                            return $finder->find('mjml');
+                        })->end()
+                        ->booleanNode('minify')->defaultFalse()->end()
+                    ->end()
+                ->end()
             ->end()
         ;
 

@@ -1,16 +1,4 @@
 services:
-
-    mjml:
-        alias: NotFloran\MjmlBundle\Renderer\RendererInterface
-        public: true
-
-    NotFloran\MjmlBundle\Renderer\RendererInterface: '@NotFloran\MjmlBundle\Renderer\BinaryRenderer'
-
-    NotFloran\MjmlBundle\Renderer\BinaryRenderer:
-        arguments:
-            $bin: '%notfloran_mjml.bin%'
-            $mimify: '%notfloran_mjml.mimify%'
-
     NotFloran\MjmlBundle\Twig\Extension:
         arguments:
             $mjml: '@NotFloran\MjmlBundle\Renderer\RendererInterface'

@@ -2,6 +2,9 @@
 
 namespace NotFloran\MjmlBundle\DependencyInjection;
 
+use NotFloran\MjmlBundle\Renderer\BinaryRenderer;
+use NotFloran\MjmlBundle\Renderer\RendererInterface;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -17,7 +20,18 @@ class MjmlExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $container->setParameter('notfloran_mjml.bin', $config['bin']);
-        $container->setParameter('notfloran_mjml.mimify', $config['mimify']);
+        $rendererDefinition = new Definition();
+
+        if ($config['renderer'] === 'binary') {
+            $rendererDefinition->setClass(BinaryRenderer::class);
+            $rendererDefinition->addArgument($config['options']['binary']);
+            $rendererDefinition->addArgument($config['options']['minify']);
+        } else if ($config['renderer'] === 'api') {
+
+        }
+
+        $container->setDefinition(BinaryRenderer::class, $rendererDefinition);
+        $container->setAlias(RendererInterface::class, $rendererDefinition->getClass());
+        $container->setAlias('mjml', $rendererDefinition->getClass());
     }
 }
