@@ -50,6 +50,12 @@ mjml:
         service_id: 'App\Mjml\MyCustomRenderer'
 ````
 
+### API
+
+The bundle has no official integration with the [MJML API](https://mjml.io/api).
+
+You can create your own integration by using [juanmiguelbesada/mjml-php](https://packagist.org/packages/juanmiguelbesada/mjml-php) and following this gist : https://gist.github.com/notFloran/ea6bab137be628f6a0c19054e08e6906.
+
 ## Usage
 
 ### Use "mjml" service
