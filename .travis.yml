@@ -29,4 +29,4 @@ install:
   - npm install mjml
 
 script:
-  - ./vendor/bin/simple-phpunit
+  - ./vendor/bin/phpunit
