@@ -16,4 +16,12 @@ class BinaryRendererTest extends AbstractTestCase
         $this->assertContains('Hello Floran from MJML and Symfony', $html);
     }
 
+    public function testInvalidRender()
+    {
+        $this->expectException(\RuntimeException::class);
+
+        $renderer = new BinaryRenderer($this->getMjmlBinary(), false);
+        $renderer->render(file_get_contents(__DIR__.'/../fixtures/invalid.mjml'));
+    }
+
 }
