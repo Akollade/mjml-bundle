@@ -24,7 +24,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('options')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('bin')->defaultValue(function () use ($finder) {
+                        ->scalarNode('binary')->defaultValue(function () use ($finder) {
                             return $finder->find('mjml');
                         })
                         ->info('Path to the binary')->end()

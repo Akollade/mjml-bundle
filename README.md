@@ -30,7 +30,7 @@ Then you needs to update the configuration:
 ```yaml
 # config/packages/mjml.yaml
 mjml:
-  renderer: binary
+  renderer: binary # default: binary
   options:
     binary: '%kernel.project_dir%/node_modules/.bin/mjml' # default: mjml
     minify: true # default: false
