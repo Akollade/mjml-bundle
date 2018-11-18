@@ -20,18 +20,24 @@ class MjmlExtension extends Extension
         $configuration = $this->getConfiguration($configs, $container);
         $config = $this->processConfiguration($configuration, $configs);
 
-        $rendererDefinition = new Definition();
+        $rendererServiceId = null;
 
         if ($config['renderer'] === 'binary') {
-            $rendererDefinition->setClass(BinaryRenderer::class);
+            $rendererDefinition = new Definition(BinaryRenderer::class);
             $rendererDefinition->addArgument($config['options']['binary']);
             $rendererDefinition->addArgument($config['options']['minify']);
-        } else if ($config['renderer'] === 'api') {
-
+            $container->setDefinition($rendererDefinition->getClass(), $rendererDefinition);
+            $rendererServiceId = $rendererDefinition->getClass();
+        } else if ($config['renderer'] === 'service') {
+            $rendererServiceId = $config['options']['service_id'];
+        } else {
+            throw new \LogicException(sprintf(
+                'Unknown renderer "%s"',
+                $config['renderer']
+            ));
         }
 
-        $container->setDefinition(BinaryRenderer::class, $rendererDefinition);
-        $container->setAlias(RendererInterface::class, $rendererDefinition->getClass());
-        $container->setAlias('mjml', $rendererDefinition->getClass());
+        $container->setAlias(RendererInterface::class, $rendererServiceId);
+        $container->setAlias('mjml', $rendererServiceId);
     }
 }

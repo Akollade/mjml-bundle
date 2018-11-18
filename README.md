@@ -36,9 +36,23 @@ mjml:
     minify: true # default: false
 ```
 
+### Custom
+
+First you must create a class which implements `NotFloran\MjmlBundle\Renderer\RendererInterface`, then declare it as a service.
+
+And finally you have to change the configuration:
+
+````yaml
+# config/packages/mjml.yaml
+mjml:
+    renderer: 'service'
+    options:
+        service_id: 'App\Mjml\MyCustomRenderer'
+````
+
 ## Usage
 
-### Use service
+### Use "mjml" service
 
 ```twig
 {# templates/mail/example.mjml.twig #}
@@ -78,7 +92,7 @@ $message = (new \Swift_Message('Hello Email'))
 $this->get('mailer')->send($message);
 ```
 
-### Use twig tag
+### Use "mjml" twig tag
 
 
 ```twig
