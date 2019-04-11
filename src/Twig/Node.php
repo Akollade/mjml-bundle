@@ -2,8 +2,8 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
-use Twig_Node;
-use Twig_Compiler;
+use Twig\Node\Node as Twig_Node;
+use Twig\Compiler;
 
 class Node extends Twig_Node
 {
@@ -20,10 +20,10 @@ class Node extends Twig_Node
     /**
      * Compile the provided mjml into html.
      *
-     * @param  Twig_Compiler $compiler
+     * @param  Compiler $compiler
      * @return void
      */
-    public function compile(Twig_Compiler $compiler)
+    public function compile(Compiler $compiler)
     {
         $compiler->addDebugInfo($this)
             ->write('ob_start();' . PHP_EOL)

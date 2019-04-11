@@ -3,10 +3,10 @@
 namespace NotFloran\MjmlBundle\Twig;
 
 use NotFloran\MjmlBundle\Renderer\RendererInterface;
-use Twig_Extension;
-use Twig_Extension_GlobalsInterface;
+use Twig\Extension\AbstractExtension;
+use Twig\Extension\GlobalsInterface;
 
-class Extension extends Twig_Extension implements Twig_Extension_GlobalsInterface
+class Extension extends AbstractExtension implements GlobalsInterface
 {
     /**
      * @var RendererInterface
