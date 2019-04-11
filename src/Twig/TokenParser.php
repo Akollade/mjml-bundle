@@ -3,10 +3,10 @@
 namespace NotFloran\MjmlBundle\Twig;
 
 use NotFloran\MjmlBundle\Renderer\RendererInterface;
-use Twig_TokenParser;
-use Twig_Token;
+use Twig\TokenParser\AbstractTokenParser;
+use Twig\Token;
 
-class TokenParser extends Twig_TokenParser
+class TokenParser extends AbstractTokenParser
 {
     /**
      * @var RendererInterface
@@ -21,21 +21,21 @@ class TokenParser extends Twig_TokenParser
     /**
      * Parse the twig tag.
      *
-     * @param Twig_Token $token
+     * @param Token $token
      * @return Node|\Twig_Node
      * @throws \Twig_Error_Syntax
      */
-    public function parse(Twig_Token $token)
+    public function parse(Token $token)
     {
         $line = $token->getLine();
 
-        $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
+        $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
 
-        $body = $this->parser->subparse(function (Twig_Token $token) {
+        $body = $this->parser->subparse(function (Token $token) {
             return $token->test('endmjml');
         }, true);
 
-        $this->parser->getStream()->expect(Twig_Token::BLOCK_END_TYPE);
+        $this->parser->getStream()->expect(Token::BLOCK_END_TYPE);
 
         return new Node($body, $line, $this->getTag());
     }
