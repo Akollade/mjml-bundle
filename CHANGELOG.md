@@ -1,8 +1,9 @@
 # Changelog
 
-## 3.1.0
+## 3.1.0 (2019-05-23)
 
-* Add Symfony ^3.4 support  #31
+* Add Symfony ^3.4 support #31
+* Use gitattributes to keep tests out of production #32
 
 ## 3.0.1 (2019-04-11)
 
