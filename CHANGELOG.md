@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.1.0
+
+* Add Symfony ^3.4 support  #31
+
+## 3.0.1 (2019-04-11)
+
+* Fix Twig deprecations #29
+
 ## 3.0.0 (2018-11-18)
 
 * Add RendererInterface to allow new implementation
