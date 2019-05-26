@@ -3,4 +3,4 @@ services:
         arguments:
             $mjml: '@NotFloran\MjmlBundle\Renderer\RendererInterface'
         tags:
-        - { name: twig.extension }
+            - { name: twig.extension }
