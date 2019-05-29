@@ -37,13 +37,7 @@ final class BinaryRenderer implements RendererInterface
                 $this->bin,
                 '-V',
             ]);
-            $process->run();
-
-            if (true !== $process->isSuccessful()) {
-                throw new \InvalidArgumentException(sprintf(
-                    "Couldn't find the MJML binary"
-                ));
-            }
+            $process->mustRun();
 
             $this->mjmlVersion = self::VERSION_4;
             if (strpos($process->getOutput(), 'mjml-core: 4.') === false) {
@@ -83,21 +77,7 @@ final class BinaryRenderer implements RendererInterface
         // Create process
         $process = new Process($arguments);
         $process->setInput($mjmlContent);
-        $process->run();
-
-        // Executes after the command finishes
-        if (true !== $process->isSuccessful()) {
-            throw new \RuntimeException(sprintf(
-                'The exit status code \'%s\' says something went wrong:' . "\n"
-                . 'stderr: "%s"' . "\n"
-                . 'stdout: "%s"' . "\n"
-                . 'command: %s.',
-                $process->getStatus(),
-                $process->getErrorOutput(),
-                $process->getOutput(),
-                $process->getCommandLine()
-            ));
-        }
+        $process->mustRun();
 
         return $process->getOutput();
     }

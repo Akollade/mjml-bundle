@@ -24,4 +24,11 @@ class BinaryRendererTest extends AbstractTestCase
         $renderer->render(file_get_contents(__DIR__.'/../fixtures/invalid.mjml'));
     }
 
+    public function testBinaryNotFound()
+    {
+        $this->expectException(\RuntimeException::class);
+
+        $renderer = new BinaryRenderer('mjml-not-found', false);
+        $renderer->render(file_get_contents(__DIR__.'/../fixtures/basic.mjml'));
+    }
 }
