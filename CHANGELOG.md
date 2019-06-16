@@ -3,6 +3,7 @@
 ## Next
 
 * Better exceptions for failed commands in BinaryRenderer #37
+* Fix deprecation for symfony/config 4.2+ #40
 
 ## 3.1.0 (2019-05-23)
 
