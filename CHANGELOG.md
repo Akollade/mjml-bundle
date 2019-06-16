@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Better exceptions for failed commands in BinaryRenderer #37
+
 ## 3.1.0 (2019-05-23)
 
 * Add Symfony ^3.4 support #31
