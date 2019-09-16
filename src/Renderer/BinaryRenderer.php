@@ -35,7 +35,7 @@ final class BinaryRenderer implements RendererInterface
         if ($this->mjmlVersion === null) {
             $process = new Process([
                 $this->bin,
-                '-V',
+                '--version',
             ]);
             $process->mustRun();
 
