@@ -69,4 +69,34 @@ class ConfigurationTest extends TestCase
 
         $this->assertConfigurationIsInvalid($config, '"service_id" is missing for service renderer');
     }
+
+    public function testValidationLevelConfiguration()
+    {
+        $config = [
+            [
+                'renderer' => 'binary',
+                'options' => [
+                    'binary' => 'mjml',
+                    'validation_level' => 'strict',
+                ],
+            ]
+        ];
+
+        $this->assertConfigurationIsValid($config);
+    }
+
+    public function testInvalidValidationLevelConfiguration()
+    {
+        $config = [
+            [
+                'renderer' => 'binary',
+                'options' => [
+                    'binary' => 'mjml',
+                    'validation_level' => 'something_invalid',
+                ],
+            ]
+        ];
+
+        $this->assertConfigurationIsInvalid($config, 'Validation level is invalid');
+    }
 }
