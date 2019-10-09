@@ -20,14 +20,20 @@ final class BinaryRenderer implements RendererInterface
     private $minify;
 
     /**
+     * @var string
+     */
+    private $validationLevel;
+
+    /**
      * @var int|null
      */
     private $mjmlVersion;
 
-    public function __construct(string $bin, bool $minify)
+    public function __construct(string $bin, bool $minify, string $validationLevel)
     {
         $this->bin = $bin;
         $this->minify = $minify;
+        $this->validationLevel = $validationLevel;
     }
 
     private function getMjmlVersion() : int
@@ -64,7 +70,7 @@ final class BinaryRenderer implements RendererInterface
             $strictArgument = '--config.validationLevel';
         }
 
-        array_push($arguments, $strictArgument, 'strict');
+        array_push($arguments, $strictArgument, $this->validationLevel);
 
         if (true === $this->minify) {
             if ($version === self::VERSION_4) {

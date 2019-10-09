@@ -38,6 +38,10 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('service_id')
                             ->info('Service id when renderer is defined to "service"')
                         ->end()
+                        ->scalarNode('validation_level')
+                            ->defaultValue('strict')
+                            ->info('Validation level. See https://github.com/mjmlio/mjml/tree/master/packages/mjml-validator#validating-mjml')
+                        ->end()
                         ->booleanNode('minify')
                             ->defaultFalse()
                         ->end()
@@ -48,8 +52,9 @@ class Configuration implements ConfigurationInterface
             ->ifTrue(function($config) {
                 $emptyBinary = $config['renderer'] === 'binary' and empty($config['options']['binary']);
                 $missingService = $config['renderer'] === 'service' and !isset($config['options']['service_id']);
+                $invalidValidationLevel = $config['renderer'] === 'binary' and !in_array($config['options']['validation_level'], ['skip', 'soft', 'strict']);
 
-                return $emptyBinary || $missingService;
+                return $emptyBinary || $missingService || $invalidValidationLevel;
             })
             ->then(function($config) {
                 if ($config['renderer'] === 'service' and !isset($config['options']['service_id'])) {
@@ -58,6 +63,10 @@ class Configuration implements ConfigurationInterface
 
                 if ($config['renderer'] === 'binary' and empty($config['options']['binary'])) {
                     throw new \LogicException('Binary is missing');
+                }
+
+                if ($config['options']['validation_level'] and !in_array($config['options']['validation_level'], ['skip', 'soft', 'strict'])) {
+                    throw new \LogicException('Validation level is invalid');
                 }
 
                 return $config;
