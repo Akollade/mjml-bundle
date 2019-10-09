@@ -1,5 +1,13 @@
 # Changelog
 
+## 3.2.0 (2019-10-09)
+
+* Allow setting validation level in config when using the binary renderer #44
+
+## 3.1.2 (2019-09-16)
+
+* Supports MJML 4.5 by using --version instead -V #42
+
 ## 3.1.1 (2019-06-16)
 
 * Better exceptions for failed commands in BinaryRenderer #37
