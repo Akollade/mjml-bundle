@@ -67,7 +67,7 @@ Install [MJML](https://mjml.io)
 $ npm install mjml
 ```
 
-Then you needs to update the configuration:
+Then you need to update the configuration:
 
 ```yaml
 # config/packages/mjml.yaml
@@ -76,6 +76,7 @@ mjml:
   options:
     binary: '%kernel.project_dir%/node_modules/.bin/mjml' # default: mjml
     minify: true # default: false
+    validation_level: skip # default: strict. See https://mjml.io/documentation/#validating-mjml
 ```
 
 ### Custom
