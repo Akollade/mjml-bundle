@@ -27,7 +27,7 @@
         "symfony/dependency-injection": "^3.4 || ^4.0 || ^5.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.10",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "phpstan/phpstan": "^0.12.0",
         "phpunit/phpunit": "^8.5",
         "matthiasnoback/symfony-config-test": "^4.1"
