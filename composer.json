@@ -27,10 +27,10 @@
         "symfony/dependency-injection": "^3.4 || ^4.0 || ^5.0"
     },
     "require-dev": {
-        "phpstan/phpstan": "^0.9.2",
         "friendsofphp/php-cs-fixer": "^2.10",
         "matthiasnoback/symfony-config-test": "^4.0",
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^7.4",
+        "phpstan/phpstan": "^0.12.0"
     },
     "suggest": {
         "swiftmailer/swiftmailer": "Plugin to integrate MJML in SwiftMailer"
