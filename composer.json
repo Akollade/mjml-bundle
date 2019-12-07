@@ -28,9 +28,9 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.10",
-        "matthiasnoback/symfony-config-test": "^4.0",
-        "phpunit/phpunit": "^7.4",
-        "phpstan/phpstan": "^0.12.0"
+        "phpstan/phpstan": "^0.12.0",
+        "phpunit/phpunit": "^8.5",
+        "matthiasnoback/symfony-config-test": "^4.1"
     },
     "suggest": {
         "swiftmailer/swiftmailer": "Plugin to integrate MJML in SwiftMailer"
