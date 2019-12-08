@@ -31,12 +31,7 @@ TWIG;
     {
         $mjmlRenderer = new BinaryRenderer($this->getMjmlBinary(), false, 'strict');
 
-        if (\is_array($template)) {
-            $loader = new TwigArrayLoader($template);
-        } else {
-            $loader = new TwigArrayLoader(['index' => $template]);
-        }
-
+        $loader = new TwigArrayLoader(['index' => $template]);
         $twig = new Environment($loader, ['debug' => true, 'cache' => false]);
         $twig->addExtension(new Extension($mjmlRenderer));
 
