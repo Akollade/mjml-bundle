@@ -18,13 +18,6 @@ class TokenParser extends AbstractTokenParser
         $this->mjml = $mjml;
     }
 
-    /**
-     * Parse the twig tag.
-     *
-     * @param Token $token
-     * @return Node|\Twig_Node
-     * @throws \Twig_Error_Syntax
-     */
     public function parse(Token $token)
     {
         $line = $token->getLine();
