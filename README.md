@@ -202,7 +202,7 @@ $message = (new \Swift_Message('Hello Email'))
     ->setBody(
         $this->renderView('mail/example.mjml.twig'),
         'text/mjml'
-    )
+    );
 
 $mailer->send($message);
 ```
