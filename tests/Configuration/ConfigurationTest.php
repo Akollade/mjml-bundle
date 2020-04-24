@@ -24,7 +24,7 @@ class ConfigurationTest extends TestCase
                     'binary' => 'mjml',
                     'minify' => true,
                 ],
-            ]
+            ],
         ];
 
         $this->assertConfigurationIsValid($config);
@@ -38,10 +38,10 @@ class ConfigurationTest extends TestCase
                 'options' => [
                     'binary' => null,
                 ],
-            ]
+            ],
         ];
 
-        $this->assertConfigurationIsInvalid($config, "Binary is missing");
+        $this->assertConfigurationIsInvalid($config, 'Binary is missing');
     }
 
     public function testServiceConfiguration()
@@ -52,7 +52,7 @@ class ConfigurationTest extends TestCase
                 'options' => [
                     'service_id' => 'App\Mjml\TestRenderer',
                 ],
-            ]
+            ],
         ];
 
         $this->assertConfigurationIsValid($config);
@@ -64,7 +64,7 @@ class ConfigurationTest extends TestCase
             [
                 'renderer' => 'service',
                 'options' => [],
-            ]
+            ],
         ];
 
         $this->assertConfigurationIsInvalid($config, '"service_id" is missing for service renderer');
@@ -79,7 +79,7 @@ class ConfigurationTest extends TestCase
                     'binary' => 'mjml',
                     'validation_level' => 'strict',
                 ],
-            ]
+            ],
         ];
 
         $this->assertConfigurationIsValid($config);
@@ -94,7 +94,7 @@ class ConfigurationTest extends TestCase
                     'binary' => 'mjml',
                     'validation_level' => 'something_invalid',
                 ],
-            ]
+            ],
         ];
 
         $this->assertConfigurationIsInvalid($config, 'Validation level is invalid');

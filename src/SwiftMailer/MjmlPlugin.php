@@ -14,7 +14,7 @@ class MjmlPlugin implements Swift_Events_SendListener
     private $mjml;
 
     /**
-     * @var boolean
+     * @var bool
      */
     private $ignoreSpoolTransport;
 
