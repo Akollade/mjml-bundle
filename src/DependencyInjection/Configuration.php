@@ -49,19 +49,19 @@ class Configuration implements ConfigurationInterface
                 ->end()
             ->end()
             ->validate()
-            ->ifTrue(function($config) {
-                $emptyBinary = $config['renderer'] === 'binary' and empty($config['options']['binary']);
-                $missingService = $config['renderer'] === 'service' and !isset($config['options']['service_id']);
-                $invalidValidationLevel = $config['renderer'] === 'binary' and !in_array($config['options']['validation_level'], ['skip', 'soft', 'strict']);
+            ->ifTrue(function ($config) {
+                $emptyBinary = 'binary' === $config['renderer'] and empty($config['options']['binary']);
+                $missingService = 'service' === $config['renderer'] and !isset($config['options']['service_id']);
+                $invalidValidationLevel = 'binary' === $config['renderer'] and !in_array($config['options']['validation_level'], ['skip', 'soft', 'strict']);
 
                 return $emptyBinary || $missingService || $invalidValidationLevel;
             })
-            ->then(function($config) {
-                if ($config['renderer'] === 'service' and !isset($config['options']['service_id'])) {
+            ->then(function ($config) {
+                if ('service' === $config['renderer'] and !isset($config['options']['service_id'])) {
                     throw new \LogicException('"service_id" is missing for service renderer');
                 }
 
-                if ($config['renderer'] === 'binary' and empty($config['options']['binary'])) {
+                if ('binary' === $config['renderer'] and empty($config['options']['binary'])) {
                     throw new \LogicException('Binary is missing');
                 }
 

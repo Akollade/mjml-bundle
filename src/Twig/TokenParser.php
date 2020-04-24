@@ -48,7 +48,7 @@ class TokenParser extends AbstractTokenParser
      *
      * @return RendererInterface
      */
-    public function getMjml() : RendererInterface
+    public function getMjml(): RendererInterface
     {
         return $this->mjml;
     }

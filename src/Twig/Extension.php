@@ -36,7 +36,7 @@ class Extension extends AbstractExtension implements GlobalsInterface
     public function getGlobals(): array
     {
         return [
-            'mjml' => $this->mjml
+            'mjml' => $this->mjml,
         ];
     }
 
@@ -48,7 +48,7 @@ class Extension extends AbstractExtension implements GlobalsInterface
     public function getTokenParsers()
     {
         return [
-            new TokenParser($this->mjml)
+            new TokenParser($this->mjml),
         ];
     }
 }

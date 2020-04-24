@@ -22,14 +22,14 @@ class MjmlExtension extends Extension
 
         $rendererServiceId = null;
 
-        if ($config['renderer'] === 'binary') {
+        if ('binary' === $config['renderer']) {
             $rendererDefinition = new Definition(BinaryRenderer::class);
             $rendererDefinition->addArgument($config['options']['binary']);
             $rendererDefinition->addArgument($config['options']['minify']);
             $rendererDefinition->addArgument($config['options']['validation_level']);
             $container->setDefinition($rendererDefinition->getClass(), $rendererDefinition);
             $rendererServiceId = $rendererDefinition->getClass();
-        } else if ($config['renderer'] === 'service') {
+        } elseif ('service' === $config['renderer']) {
             $rendererServiceId = $config['options']['service_id'];
         } else {
             throw new \LogicException(sprintf(

@@ -36,9 +36,9 @@ final class BinaryRenderer implements RendererInterface
         $this->validationLevel = $validationLevel;
     }
 
-    private function getMjmlVersion() : int
+    private function getMjmlVersion(): int
     {
-        if ($this->mjmlVersion === null) {
+        if (null === $this->mjmlVersion) {
             $process = new Process([
                 $this->bin,
                 '--version',
@@ -46,7 +46,7 @@ final class BinaryRenderer implements RendererInterface
             $process->mustRun();
 
             $this->mjmlVersion = self::VERSION_4;
-            if (strpos($process->getOutput(), 'mjml-core: 4.') === false) {
+            if (false === strpos($process->getOutput(), 'mjml-core: 4.')) {
                 $this->mjmlVersion = self::VERSION_BEFORE_4;
             }
         }
@@ -54,7 +54,7 @@ final class BinaryRenderer implements RendererInterface
         return $this->mjmlVersion;
     }
 
-    public function render(string $mjmlContent) : string
+    public function render(string $mjmlContent): string
     {
         $version = $this->getMjmlVersion();
 
@@ -66,14 +66,14 @@ final class BinaryRenderer implements RendererInterface
         ];
 
         $strictArgument = '-l';
-        if ($version === self::VERSION_4) {
+        if (self::VERSION_4 === $version) {
             $strictArgument = '--config.validationLevel';
         }
 
         array_push($arguments, $strictArgument, $this->validationLevel);
 
         if (true === $this->minify) {
-            if ($version === self::VERSION_4) {
+            if (self::VERSION_4 === $version) {
                 array_push($arguments, '--config.minify', 'true');
             } else {
                 $arguments[] = '-m';
