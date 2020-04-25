@@ -29,7 +29,6 @@ before_install:
   - composer self-update
   - if [ "$DEPENDENCIES" = "beta" ]; then composer config minimum-stability beta; fi;
   - if [ "$SYMFONY_VERSION" != "" ]; then composer require --no-update symfony/process:$SYMFONY_VERSION symfony/dependency-injection:$SYMFONY_VERSION symfony/twig-bundle:$SYMFONY_VERSION; fi
-  - composer update $COMPOSER_FLAGS --prefer-dist
 
 install:
   - composer update --prefer-dist --no-interaction $COMPOSER_FLAGS
