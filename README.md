@@ -101,46 +101,6 @@ You can create your own integration by using [juanmiguelbesada/mjml-php](https:/
 
 ## Usage
 
-### Use "mjml" service
-
-```twig
-{# templates/mail/example.mjml.twig #}
-<mjml>
-    <mj-body>
-            <mj-section>
-                <mj-column>
-
-                    <mj-image width="100px" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
-
-                    <mj-divider border-color="#F45E43"></mj-divider>
-
-                    <mj-text font-size="20px" color="#F45E43" font-family="helvetica">
-                        Hello {{ name }} from MJML and Symfony
-                    </mj-text>
-
-                </mj-column>
-            </mj-section>
-    </mj-body>
-</mjml>
-```
-
-```php
-$message = (new \Swift_Message('Hello Email'))
-    ->setFrom('my-app@example.fr')
-    ->setTo('me@example.fr')
-    ->setBody(
-        $this->get('mjml')->render(
-            $this->get('twig')->render('templates/mail/example.mjml.twig', [
-                'name' => 'Floran'
-            ])
-        ),
-        'text/html'
-    )
-;
-
-$this->get('mailer')->send($message);
-```
-
 ### Use "mjml" twig tag
 
 
@@ -170,23 +130,79 @@ $this->get('mailer')->send($message);
 ```
 
 ```php
-$message = (new \Swift_Message('Hello Email'))
-    ->setFrom('my-app@example.fr')
-    ->setTo('me@example.fr')
-    ->setBody(
-        $this->get('twig')->render('templates/mail/example.mjml.twig', [
-            'name' => 'Floran'
-        ]),
-        'text/html'
-    )
-;
+public function index(\Swift_Mailer $mailer)
+{
+    $message = (new \Swift_Message('Hello Email'))
+        ->setFrom('my-app@example.fr')
+        ->setTo('me@example.fr')
+        ->setBody(
+            $this->renderView(
+                'templates/mail/example.mjml.twig',
+                ['name' => 'Floran']
+            ),
+            'text/html'
+        )
+    ;
 
-$this->get('mailer')->send($message);
+    $mailer->send($message);
+
+    // ...
+}
+```
+
+### Use "mjml" service
+
+```twig
+{# templates/mail/example.mjml.twig #}
+<mjml>
+    <mj-body>
+            <mj-section>
+                <mj-column>
+
+                    <mj-image width="100px" src="https://mjml.io/assets/img/logo-small.png"></mj-image>
+
+                    <mj-divider border-color="#F45E43"></mj-divider>
+
+                    <mj-text font-size="20px" color="#F45E43" font-family="helvetica">
+                        Hello {{ name }} from MJML and Symfony
+                    </mj-text>
+
+                </mj-column>
+            </mj-section>
+    </mj-body>
+</mjml>
+```
+
+```php
+use NotFloran\MjmlBundle\Renderer\RendererInterface;
+
+// ...
+
+public function index(\Swift_Mailer $mailer, RendererInterface $mjml)
+{
+    $message = (new \Swift_Message('Hello Email'))
+        ->setFrom('my-app@example.fr')
+        ->setTo('me@example.fr')
+        ->setBody(
+            $mjml->render(
+                $this->renderView(
+                    'templates/mail/example.mjml.twig',
+                    ['name' => 'Floran']
+                )
+            ),
+            'text/html'
+        )
+    ;
+
+    $mailer->send($message);
+
+    // ...
+}
 ```
 
 ## SwiftMailer integration
 
-Declare the following service: 
+Declare the following service:
 
 ```yaml
 NotFloran\MjmlBundle\SwiftMailer\MjmlPlugin:
