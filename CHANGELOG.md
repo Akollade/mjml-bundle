@@ -1,10 +1,13 @@
 # Changelog
 
-## 3.4.0 (-)
+## 3.4.0 (2020-04-26)
 
 * Better examples in README #57
 * Add PHP 7.4 in continuous integration #55
 * Replace PHP-CS-Fixer with EasyCodingStandard #54
+* Use SF Mailer syntax for examples in README #58
+* The Swiftmailer integration is deprecated #69
+* Add CONTRIBUTING #61
 
 ## 3.3.0 (2019-12-08)
 

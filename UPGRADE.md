@@ -1,4 +1,8 @@
-# Changelog
+# Upgrade
+
+## 3.4.0
+
+`NotFloran\MjmlBundle\SwiftMailer\MjmlPlugin` is deprecated and will be removed in v4, you must copy and paste the class in your project.
 
 ## 3.0.0
 
@@ -15,9 +19,9 @@ Before:
 mjml:
     bin: 'mjml'
     mimify: true
-``` 
+```
 
-After: 
+After:
 
 
 ```
@@ -27,8 +31,8 @@ mjml:
   options:
     binary: 'mjml'
     minify: true
-``` 
+```
 
 ### Services
 
-The service `@NotFloran\MjmlBundle\Mjml` no longer exists, you must use `@mjml` or `@NotFloran\MjmlBundle\Renderer\RendererInterface`. 
+The service `@NotFloran\MjmlBundle\Mjml` no longer exists, you must use `@mjml` or `@NotFloran\MjmlBundle\Renderer\RendererInterface`.
