@@ -103,7 +103,6 @@ You can create your own integration by using [juanmiguelbesada/mjml-php](https:/
 
 ### Use "mjml" twig tag
 
-
 ```twig
 {# mail/example.mjml.twig #}
 {% block email_content %}
@@ -130,21 +129,18 @@ You can create your own integration by using [juanmiguelbesada/mjml-php](https:/
 ```
 
 ```php
-public function index(\Swift_Mailer $mailer)
+public function sendEmail(MailerInterface $mailer)
 {
-    $message = (new \Swift_Message('Hello Email'))
-        ->setFrom('my-app@example.fr')
-        ->setTo('me@example.fr')
-        ->setBody(
-            $this->renderView(
-                'templates/mail/example.mjml.twig',
-                ['name' => 'Floran']
-            ),
-            'text/html'
-        )
-    ;
+    // The MJMl body is rendered by the mjml tag in the twig file
+    $htmlBody = $this->renderView('templates/mail/example.mjml.twig', ['name' => 'Floran']);
 
-    $mailer->send($message);
+    $email = (new Email())
+        ->from('my-app@example.fr')
+        ->to('me@example.fr')
+        ->subject('Hello from MJML!')
+        ->html($htmlBody);
+
+    $mailer->send($email);
 
     // ...
 }
@@ -178,23 +174,18 @@ use NotFloran\MjmlBundle\Renderer\RendererInterface;
 
 // ...
 
-public function index(\Swift_Mailer $mailer, RendererInterface $mjml)
+public function sendEmail(MailerInterface $mailer, RendererInterface $mjml)
 {
-    $message = (new \Swift_Message('Hello Email'))
-        ->setFrom('my-app@example.fr')
-        ->setTo('me@example.fr')
-        ->setBody(
-            $mjml->render(
-                $this->renderView(
-                    'templates/mail/example.mjml.twig',
-                    ['name' => 'Floran']
-                )
-            ),
-            'text/html'
-        )
-    ;
+    $mjmlBody = $this->renderView('templates/mail/example.mjml.twig', ['name' => 'Floran']);
+    $htmlBody = $mjml->render($mjmlBody);
 
-    $mailer->send($message);
+    $email = (new Email())
+        ->from('my-app@example.fr')
+        ->to('me@example.fr')
+        ->subject('Hello from MJML!')
+        ->html($htmlBody);
+
+    $mailer->send($email);
 
     // ...
 }
