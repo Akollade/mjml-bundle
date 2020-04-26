@@ -1,8 +1,15 @@
 # Changelog
 
+## 3.4.0 (-)
+
+* Better examples in README #57
+* Add PHP 7.4 in continuous integration #55
+* Replace PHP-CS-Fixer with EasyCodingStandard #54
+
 ## 3.3.0 (2019-12-08)
 
-* Supports Symfony 5 #45 #46 #48
+* Supports Symfony 5 #45 #46
+* Fix issue with the last version of Twig #48
 
 ## 3.2.0 (2019-10-09)
 
