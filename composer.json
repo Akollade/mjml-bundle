@@ -32,9 +32,6 @@
         "matthiasnoback/symfony-config-test": "^4.1",
         "symplify/easy-coding-standard": "^6.0|^7.0"
     },
-    "suggest": {
-        "swiftmailer/swiftmailer": "Plugin to integrate MJML in SwiftMailer"
-    },
     "scripts": {
         "cs-check": "vendor/bin/ecs check tests src",
         "cs-fix": "vendor/bin/ecs check tests src --fix"
