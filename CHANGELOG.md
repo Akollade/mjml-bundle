@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.3.0 (2019-12-08)
+
+* Supports Symfony 5 #45 #46 #48
+
 ## 3.2.0 (2019-10-09)
 
 * Allow setting validation level in config when using the binary renderer #44
@@ -38,7 +42,7 @@
 
 ## 2.1.0 (2018-07-17)
 
-* Add plugin to integrate MJML with SwiftMailer 
+* Add plugin to integrate MJML with SwiftMailer
 
 ## 2.0.1 (2018-06-09)
 
