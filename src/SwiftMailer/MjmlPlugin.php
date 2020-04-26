@@ -6,6 +6,9 @@ use NotFloran\MjmlBundle\Renderer\RendererInterface;
 use Swift_Events_SendEvent;
 use Swift_Events_SendListener;
 
+/**
+ * @deprecated since MjmlBundle 3.4 and will be removed in the next major version.
+ */
 class MjmlPlugin implements Swift_Events_SendListener
 {
     /**

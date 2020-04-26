@@ -193,6 +193,8 @@ public function sendEmail(MailerInterface $mailer, RendererInterface $mjml)
 
 ## SwiftMailer integration
 
+*❗ This integration is deprecated and will be removed in the next major version.*
+
 Declare the following service:
 
 ```yaml
