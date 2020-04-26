@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.x.x
+## 3.4.1 (2020-04-26)
 
 * Remove suggest of SwiftMailer
 
