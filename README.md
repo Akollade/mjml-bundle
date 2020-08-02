@@ -93,6 +93,29 @@ mjml:
         service_id: 'App\Mjml\MyCustomRenderer'
 ````
 
+### PHP Config
+
+If you're using symfony 5 and want to configure this bundle with PHP files instead of YAML:
+
+```php
+// config/packages/mjml.php
+<?php declare(strict_types=1);
+
+use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
+
+return static function (ContainerConfigurator $configurator): void
+{
+    $configurator->extension('mjml', [
+        'renderer' => 'binary',
+        'options' => [
+            'binary' => '%kernel.project_dir%/node_modules/.bin/mjml',
+            'minify' => true,
+            'validation_level' => 'skip'
+        ]
+    ]);
+};
+```
+
 ### API
 
 The bundle has no official integration with the [MJML API](https://mjml.io/api).
