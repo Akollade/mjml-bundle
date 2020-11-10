@@ -36,7 +36,7 @@ final class BinaryRenderer implements RendererInterface
         $this->validationLevel = $validationLevel;
     }
 
-    private function getMjmlVersion(): int
+    public function getMjmlVersion(): int
     {
         if (null === $this->mjmlVersion) {
             $process = new Process([
