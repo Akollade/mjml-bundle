@@ -4,9 +4,8 @@ namespace NotFloran\MjmlBundle\Twig;
 
 use NotFloran\MjmlBundle\Renderer\RendererInterface;
 use Twig\Extension\AbstractExtension;
-use Twig\Extension\GlobalsInterface;
 
-class Extension extends AbstractExtension implements GlobalsInterface
+class Extension extends AbstractExtension
 {
     /**
      * @var RendererInterface
@@ -19,28 +18,6 @@ class Extension extends AbstractExtension implements GlobalsInterface
     }
 
     /**
-     * Return the name of the extension.
-     *
-     * @return string
-     */
-    public function getName()
-    {
-        return 'mjml';
-    }
-
-    /**
-     * Setup the twig globals.
-     *
-     * @return array
-     */
-    public function getGlobals(): array
-    {
-        return [
-            'mjml' => $this->mjml,
-        ];
-    }
-
-    /**
      * Setup twig tags.
      *
      * @return array
@@ -48,7 +25,12 @@ class Extension extends AbstractExtension implements GlobalsInterface
     public function getTokenParsers()
     {
         return [
-            new TokenParser($this->mjml),
+            new TokenParser(),
         ];
+    }
+
+    public function getMjml(): RendererInterface
+    {
+        return $this->mjml;
     }
 }
