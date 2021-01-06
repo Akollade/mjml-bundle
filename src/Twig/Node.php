@@ -32,9 +32,6 @@ class Node extends Twig_Node
             ->write('$lines = explode("\n", $content);'.PHP_EOL)
             ->write('$content = preg_replace(\'/^\' . $matches[0]. \'/\', "", $lines);'.PHP_EOL)
             ->write('$content = implode("\n", $content);'.PHP_EOL)
-            ->write('echo $this->env->getTags()["mjml"]
-                                    ->getMjml()
-                                    ->render($content);
-                '.PHP_EOL);
+            ->write('echo $this->env->getExtension("'.Extension::class.'")->getMjml()->render($content);'.PHP_EOL);
     }
 }
