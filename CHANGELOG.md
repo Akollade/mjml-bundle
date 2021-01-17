@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5
+
+* A new option to set the path to the node binary is available #35
+
 ## 3.4.1 (2020-04-26)
 
 * Remove suggest of SwiftMailer

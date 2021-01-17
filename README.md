@@ -75,9 +75,12 @@ mjml:
   renderer: binary # default: binary
   options:
     binary: '%kernel.project_dir%/node_modules/.bin/mjml' # default: mjml
+    node: '/Users/user/.nvm/versions/node/v10.16.0/bin/node' # default: null
     minify: true # default: false
     validation_level: skip # default: strict. See https://mjml.io/documentation/#validating-mjml
 ```
+
+The `node` option is there for those who have problems with `$PATH`, see [#35](https://github.com/notFloran/mjml-bundle/issues/35).
 
 ### Custom
 

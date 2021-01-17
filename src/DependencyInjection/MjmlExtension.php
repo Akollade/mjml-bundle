@@ -27,6 +27,7 @@ class MjmlExtension extends Extension
             $rendererDefinition->addArgument($config['options']['binary']);
             $rendererDefinition->addArgument($config['options']['minify']);
             $rendererDefinition->addArgument($config['options']['validation_level']);
+            $rendererDefinition->addArgument($config['options']['node']);
             $container->setDefinition($rendererDefinition->getClass(), $rendererDefinition);
             $rendererServiceId = $rendererDefinition->getClass();
         } elseif ('service' === $config['renderer']) {

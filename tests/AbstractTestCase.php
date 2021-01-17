@@ -16,4 +16,9 @@ abstract class AbstractTestCase extends TestCase
 
         return $binary;
     }
+
+    protected function getNode(): string
+    {
+        return 'node';
+    }
 }

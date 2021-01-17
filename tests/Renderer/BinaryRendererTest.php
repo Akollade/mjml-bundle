@@ -47,4 +47,12 @@ class BinaryRendererTest extends AbstractTestCase
         $renderer = new BinaryRenderer('mjml-not-found', false, 'strict');
         $renderer->render(file_get_contents(__DIR__.'/../fixtures/basic.mjml'));
     }
+
+    public function testUseNode()
+    {
+        $renderer = new BinaryRenderer($this->getMjmlBinary(), false, 'strict', $this->getNode());
+        $html = $renderer->render(file_get_contents(__DIR__.'/../fixtures/basic.mjml'));
+
+        $this->assertContains('html', $html);
+    }
 }
