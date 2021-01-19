@@ -29,20 +29,30 @@ final class BinaryRenderer implements RendererInterface
      */
     private $mjmlVersion;
 
-    public function __construct(string $bin, bool $minify, string $validationLevel)
+    /**
+     * @var string|null
+     */
+    private $node;
+
+    public function __construct(string $bin, bool $minify, string $validationLevel, string $node = null)
     {
         $this->bin = $bin;
         $this->minify = $minify;
         $this->validationLevel = $validationLevel;
+        $this->node = $node;
     }
 
     public function getMjmlVersion(): int
     {
         if (null === $this->mjmlVersion) {
-            $process = new Process([
-                $this->bin,
-                '--version',
-            ]);
+            $command = [];
+            if ($this->node) {
+                $command[] = $this->node;
+            }
+
+            array_push($command, $this->bin, '--version');
+
+            $process = new Process($command);
             $process->mustRun();
 
             $this->mjmlVersion = self::VERSION_4;
@@ -58,30 +68,30 @@ final class BinaryRenderer implements RendererInterface
     {
         $version = $this->getMjmlVersion();
 
-        // Tab arguments
-        $arguments = [
-            $this->bin,
-            '-i',
-            '-s',
-        ];
+        $command = [];
+        if ($this->node) {
+            $command[] = $this->node;
+        }
+
+        array_push($command, $this->bin, '-i', '-s');
 
         $strictArgument = '-l';
         if (self::VERSION_4 === $version) {
             $strictArgument = '--config.validationLevel';
         }
 
-        array_push($arguments, $strictArgument, $this->validationLevel);
+        array_push($command, $strictArgument, $this->validationLevel);
 
         if (true === $this->minify) {
             if (self::VERSION_4 === $version) {
-                array_push($arguments, '--config.minify', 'true');
+                array_push($command, '--config.minify', 'true');
             } else {
-                $arguments[] = '-m';
+                $command[] = '-m';
             }
         }
 
         // Create process
-        $process = new Process($arguments);
+        $process = new Process($command);
         $process->setInput($mjmlContent);
         $process->mustRun();
 

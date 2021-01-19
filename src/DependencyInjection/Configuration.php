@@ -33,7 +33,11 @@ class Configuration implements ConfigurationInterface
                             ->defaultValue(function () use ($finder) {
                                 return $finder->find('mjml');
                             })
-                            ->info('Path to the binary')
+                            ->info('Path to the MJML binary')
+                        ->end()
+                        ->scalarNode('node')
+                            ->defaultNull()
+                            ->info('Path to node')
                         ->end()
                         ->scalarNode('service_id')
                             ->info('Service id when renderer is defined to "service"')
