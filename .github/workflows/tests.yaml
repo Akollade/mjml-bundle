@@ -1,0 +1,75 @@
+name: "Tests"
+
+on:
+    pull_request: ~
+    push:
+        branches:
+            - master
+
+env:
+    fail-fast: true
+
+jobs:
+    test:
+        name: "PHP ${{ matrix.php-version }} tests (${{ matrix.description }})"
+        runs-on: ubuntu-latest
+
+        strategy:
+            matrix:
+                php-version: ['7.1', '7.2', '7.3', '7.4']
+                symfony_constraint: [false]
+                include:
+                    - description: 'Symfony 3.4'
+                      php-version: '7.1'
+                      symfony_constraint: 3.4.*
+                    - description: 'Symfony 4.4'
+                      php-version: '7.3'
+                      symfony_constraint: 4.4.*
+                    - description: 'prefer lowest'
+                      php-version: '7.2'
+                      composer_option: '--prefer-lowest'
+
+        steps:
+            - name: "Checkout code"
+              uses: actions/checkout@v2
+
+            - name: "Install PHP with extensions"
+              uses: shivammathur/setup-php@v2
+              with:
+                  coverage: "none"
+                  php-version: ${{ matrix.php-version }}
+
+            - name: "Set composer cache directory"
+              id: composer-cache
+              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+            - name: "Cache composer"
+              uses: actions/cache@v2
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.symfony_constraint }}-${{ matrix.composer_option }}-composer-${{ hashFiles('composer.json') }}
+                  restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.symfony_constraint }}-${{ matrix.composer_option }}-composer-
+
+            - name: "Cache node"
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: "Install symfony packages in specific version"
+              run: composer require --no-update symfony/process:${{ matrix.symfony_constraint }} symfony/dependency-injection:${{ matrix.symfony_constraint }} symfony/twig-bundle:${{ matrix.symfony_constraint }}
+              if: matrix.symfony_constraint
+
+            - name: "Install PHP dependencies"
+              run: composer update --no-progress --ansi ${{ matrix.composer_option }}
+
+            - name: "Install MJML"
+              run: npm install mjml
+
+            - name: "Show MJML version"
+              run: npx mjml --version
+
+            - name: "Run tests"
+              run: ./vendor/bin/phpunit

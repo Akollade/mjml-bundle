@@ -14,19 +14,27 @@ jobs:
         name: CS Check
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v2
+            - name: "Checkout code"
+              uses: actions/checkout@v2
 
-            - uses: actions/cache@v2
+            - name: "Install PHP with extensions"
+              uses: shivammathur/setup-php@v2
               with:
-                  path: ~/.composer/cache/files
-                  key: ${{ runner.os }}
-
-            - uses: shivammathur/setup-php@v2
-              with:
+                  coverage: "none"
                   php-version: 7.4
 
-            - name: Install Composer dependencies
-              run: composer update
+            - name: "Set composer cache directory"
+              id: composer-cache
+              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
 
-            - name: EasyCodingStandard
+            - name: "Cache composer"
+              uses: actions/cache@v2
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}
+
+            - name: "Install Composer dependencies"
+              run: composer update --no-progress
+
+            - name: "EasyCodingStandard"
               run: composer cs-check
