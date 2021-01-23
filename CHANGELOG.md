@@ -1,6 +1,10 @@
 # Changelog
 
-## 3.5 (2021-01-19)
+## 3.5.1 (2021-01-23)
+
+* Allow PHP 8 #70
+
+## 3.5.0 (2021-01-19)
 
 * A new option to set the path to the node binary is available #35
 
