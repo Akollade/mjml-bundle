@@ -16,7 +16,7 @@ jobs:
 
         strategy:
             matrix:
-                php-version: ['7.1', '7.2', '7.3', '7.4']
+                php-version: ['7.1', '7.2', '7.3', '7.4', '8.0']
                 symfony_constraint: [false]
                 include:
                     - description: 'Symfony 3.4'
@@ -64,6 +64,11 @@ jobs:
 
             - name: "Install PHP dependencies"
               run: composer update --no-progress --ansi ${{ matrix.composer_option }}
+              if: matrix.php-version != '8.0'
+
+            - name: "Install PHP dependencies"
+              run: composer update --no-progress --ansi ${{ matrix.composer_option }} --ignore-platform-reqs
+              if: matrix.php-version == '8.0'
 
             - name: "Install MJML"
               run: npm install mjml
