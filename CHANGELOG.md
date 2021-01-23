@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.5
+## 3.5 (2021-01-19)
 
 * A new option to set the path to the node binary is available #35
 
