@@ -29,7 +29,7 @@ TWIG;
 
     private function getTemplate($template): TemplateWrapper
     {
-        $mjmlRenderer = new BinaryRenderer($this->getMjmlBinary(), false, 'strict');
+        $mjmlRenderer = new BinaryRenderer($this->getMjmlBinary(), false, 'strict', __DIR__.'/../../cache', true);
 
         $loader = new TwigArrayLoader(['index' => $template]);
         $twig = new Environment($loader, ['debug' => true, 'cache' => false]);

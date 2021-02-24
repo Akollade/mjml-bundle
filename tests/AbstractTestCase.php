@@ -6,6 +6,11 @@ use PHPUnit\Framework\TestCase;
 
 abstract class AbstractTestCase extends TestCase
 {
+    protected function getCacheDir(): string
+    {
+        return 'cache';
+    }
+
     protected function getMjmlBinary(): string
     {
         $binary = 'node_modules/.bin/mjml';
