@@ -2,8 +2,8 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
-use Twig\TokenParser\AbstractTokenParser;
 use Twig\Token;
+use Twig\TokenParser\AbstractTokenParser;
 
 class TokenParser extends AbstractTokenParser
 {

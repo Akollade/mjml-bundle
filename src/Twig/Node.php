@@ -2,15 +2,14 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
-use Twig\Node\Node as Twig_Node;
 use Twig\Compiler;
+use Twig\Node\Node as Twig_Node;
 
 class Node extends Twig_Node
 {
     /**
-     * @param Twig_Node   $value
      * @param int         $line
-     * @param null|string $tag
+     * @param string|null $tag
      */
     public function __construct(Twig_Node $value, $line, $tag = null)
     {
@@ -19,8 +18,6 @@ class Node extends Twig_Node
 
     /**
      * Compile the provided mjml into html.
-     *
-     * @param Compiler $compiler
      */
     public function compile(Compiler $compiler)
     {
