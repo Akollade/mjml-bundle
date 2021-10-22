@@ -27,9 +27,6 @@ class MjmlPlugin implements Swift_Events_SendListener
         $this->ignoreSpoolTransport = $ignoreSpoolTransport;
     }
 
-    /**
-     * @param Swift_Events_SendEvent $event
-     */
     public function beforeSendPerformed(Swift_Events_SendEvent $event)
     {
         if ($this->ignoreSpoolTransport && $event->getSource() instanceof \Swift_Transport_SpoolTransport) {
@@ -49,9 +46,6 @@ class MjmlPlugin implements Swift_Events_SendListener
         }
     }
 
-    /**
-     * @param Swift_Events_SendEvent $event
-     */
     public function sendPerformed(Swift_Events_SendEvent $event)
     {
     }
