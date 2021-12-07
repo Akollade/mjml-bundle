@@ -25,6 +25,9 @@ jobs:
                     - description: 'Symfony 4.4'
                       php-version: '7.3'
                       symfony_constraint: 4.4.*
+                    - description: 'Symfony 5.4'
+                      php-version: '8.0'
+                      symfony_constraint: 5.4.*
                     - description: 'prefer lowest'
                       php-version: '7.2'
                       composer_option: '--prefer-lowest'
