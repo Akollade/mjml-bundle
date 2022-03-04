@@ -19,7 +19,7 @@ class Node extends Twig_Node
     /**
      * Compile the provided mjml into html.
      */
-    public function compile(Compiler $compiler)
+    public function compile(Compiler $compiler): void
     {
         $compiler->addDebugInfo($this)
             ->write('ob_start();'.PHP_EOL)

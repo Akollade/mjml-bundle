@@ -2,12 +2,13 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
+use Twig\Node\Node as Twig_Node;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
 
 class TokenParser extends AbstractTokenParser
 {
-    public function parse(Token $token)
+    public function parse(Token $token): Twig_Node
     {
         $line = $token->getLine();
 
