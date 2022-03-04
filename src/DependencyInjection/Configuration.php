@@ -8,7 +8,7 @@ use Symfony\Component\Process\ExecutableFinder;
 
 class Configuration implements ConfigurationInterface
 {
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('mjml');
         if (\method_exists($treeBuilder, 'getRootNode')) {
