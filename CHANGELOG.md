@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.2 (2022-12-15)
+
+* Add "mjml_version" as an optional parameter in configuration
+
 ## 3.5.1 (2021-01-23)
 
 * Allow PHP 8 #70
