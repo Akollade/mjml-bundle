@@ -1,8 +1,16 @@
 # Changelog
 
-## 3.6.0 (2022-12-19)
+## 3.7.0 (2022-01-29)
 
-* Add "mjml_version" as an optional parameter in configuration
+* Add "mjml_version" as an optional parameter in configuration #83
+
+## 3.6.1 (2022-03-04)
+
+* Fix deprecations related to return types #80
+
+## 3.6.0 (2022-01-29)
+
+* Allow Symfony 6 #79
 
 ## 3.5.1 (2021-01-23)
 
