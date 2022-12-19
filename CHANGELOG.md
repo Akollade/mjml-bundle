@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.5.2 (2022-12-15)
+## 3.6.0 (2022-12-19)
 
 * Add "mjml_version" as an optional parameter in configuration
 
