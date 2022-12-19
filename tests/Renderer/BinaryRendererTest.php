@@ -64,8 +64,8 @@ class BinaryRendererTest extends AbstractTestCase
         $renderer = new BinaryRenderer($this->getMjmlBinary(), false, 'strict', null, $mjmlVersion);
         $html = $renderer->render(file_get_contents(__DIR__.'/../fixtures/basic.mjml'));
 
-        $this->assertStringContainsString('html', $html);
-        $this->assertStringContainsString('Hello Floran from MJML and Symfony', $html);
+        $this->assertContains('html', $html);
+        $this->assertContains('Hello Floran from MJML and Symfony', $html);
     }
 
     public function mjmlVersionDataProvider()
