@@ -71,7 +71,7 @@ jobs:
               if: matrix.php-version != '8.0'
 
             - name: "Install PHP dependencies"
-              run: composer update --no-progress --ansi ${{ matrix.composer_option }} --ignore-platform-reqs
+              run: composer update --no-progress --ansi ${{ matrix.composer_option }}
               if: matrix.php-version == '8.0'
 
             - name: "Install MJML"
