@@ -34,12 +34,13 @@ final class BinaryRenderer implements RendererInterface
      */
     private $node;
 
-    public function __construct(string $bin, bool $minify, string $validationLevel, string $node = null)
+    public function __construct(string $bin, bool $minify, string $validationLevel, string $node = null, int $mjmlVersion = null)
     {
         $this->bin = $bin;
         $this->minify = $minify;
         $this->validationLevel = $validationLevel;
         $this->node = $node;
+        $this->mjmlVersion = $mjmlVersion;
     }
 
     public function getMjmlVersion(): int
