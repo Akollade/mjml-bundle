@@ -35,7 +35,7 @@ jobs:
 
         steps:
             - name: "Checkout code"
-              uses: actions/checkout@v2
+              uses: actions/checkout@v3
 
             - name: "Install PHP with extensions"
               uses: shivammathur/setup-php@v2
@@ -43,16 +43,16 @@ jobs:
                   coverage: "none"
                   php-version: ${{ matrix.php-version }}
 
-            - name: "Set composer cache directory"
+            - name: Get composer cache directory
               id: composer-cache
-              run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+              run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
 
-            - name: "Cache composer"
-              uses: actions/cache@v2
+            - name: Cache composer
+              uses: actions/cache@v3
               with:
-                  path: ${{ steps.composer-cache.outputs.dir }}
-                  key: ${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.symfony_constraint }}-${{ matrix.composer_option }}-composer-${{ hashFiles('composer.json') }}
-                  restore-keys: ${{ runner.os }}-${{ matrix.php-version }}-${{ matrix.symfony_constraint }}-${{ matrix.composer_option }}-composer-
+                path: ${{ steps.composer-cache.outputs.dir }}
+                key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                restore-keys: ${{ runner.os }}-composer-
 
             - name: "Cache node"
               uses: actions/cache@v2
