@@ -17,7 +17,7 @@ jobs:
 
         strategy:
             matrix:
-                php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1']
+                php-version: ['7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2']
                 symfony_constraint: [false]
                 include:
                     - description: 'Symfony 3.4'
@@ -29,6 +29,9 @@ jobs:
                     - description: 'Symfony 5.4'
                       php-version: '8.0'
                       symfony_constraint: 5.4.*
+                    - description: 'Symfony 6.4'
+                      php-version: '8.2'
+                      symfony_constraint: 6.4.*
                     - description: 'prefer lowest'
                       php-version: '7.2'
                       composer_option: '--prefer-lowest'
