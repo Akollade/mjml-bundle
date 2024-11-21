@@ -53,6 +53,10 @@ class Node extends Twig_Node
             ->write('$content = preg_replace(\'/^\' . $matches[0]. \'/\', "", $lines);'.PHP_EOL)
             ->write('$content = implode("\n", $content);'.PHP_EOL);
 
-        $compiler->write('echo $this->env->getExtension("'.Extension::class.'")->getMjml()->render($content);'.PHP_EOL);
+        if (class_exists(CaptureNode::class)) {
+            $compiler->write('yield $this->env->getExtension("'.Extension::class.'")->getMjml()->render($content);'.PHP_EOL);
+        } else {
+            $compiler->write('echo $this->env->getExtension("'.Extension::class.'")->getMjml()->render($content);'.PHP_EOL);
+        }
     }
 }
