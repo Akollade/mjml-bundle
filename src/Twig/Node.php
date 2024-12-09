@@ -2,10 +2,12 @@
 
 namespace NotFloran\MjmlBundle\Twig;
 
+use Twig\Attribute\YieldReady;
 use Twig\Compiler;
 use Twig\Node\CaptureNode;
 use Twig\Node\Node as Twig_Node;
 
+#[YieldReady]
 class Node extends Twig_Node
 {
     /**
