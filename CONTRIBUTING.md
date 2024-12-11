@@ -7,7 +7,7 @@
 To install the project and run the tests, you need to clone it first:
 
 ```sh
-$ git clone https://github.com/notFloran/mjml-bundle.git
+$ git clone https://github.com/Akollade/mjml-bundle.git
 ```
 
 You will then need to run a composer installation and install MJML:
