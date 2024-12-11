@@ -16,12 +16,20 @@ class Node extends Twig_Node
      */
     public function __construct(Twig_Node $value, $line, $tag = null)
     {
+        $twigGreaterThan312 = version_compare(\Twig\Environment::VERSION, '3.12', '>=');
+
         if (class_exists(CaptureNode::class)) {
-            $value = new CaptureNode($value, $line, $tag);
+            $value = $twigGreaterThan312
+                ? new CaptureNode($value, $line)
+                : new CaptureNode($value, $line, $tag);
             $value->setAttribute('raw', true);
         }
 
-        parent::__construct(['value' => $value], ['name' => $tag], $line, $tag);
+        if ($twigGreaterThan312) {
+            parent::__construct(['value' => $value], ['name' => $tag], $line);
+        } else {
+            parent::__construct(['value' => $value], ['name' => $tag], $line, $tag);
+        }
     }
 
     /**
